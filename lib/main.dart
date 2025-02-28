@@ -10,6 +10,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QrCode();
+    return Container(
+      color: Colors.white,
+      child: QrCode()
+    );
   }
 }
