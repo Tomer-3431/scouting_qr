@@ -7,9 +7,13 @@ class QrCode extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return QrImageView(
-      data: "1234",
-      size: 200,
+    return Center(
+      child: QrImageView(
+        data: "<html><b>abc</b></html>",
+        size: 200,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
     );
   }
 }
