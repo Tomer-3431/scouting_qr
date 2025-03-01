@@ -7,9 +7,9 @@ import 'package:scouting_qr/enum/collection_zone.dart';
 import 'package:scouting_qr/form/details_form.dart';
 import 'package:scouting_qr/form/teleopareted_form.dart';
 import 'package:scouting_qr/qr_code/qr_code.dart';
-import 'package:scouting_qr/utils/boolean_switch.dart';
-import 'package:scouting_qr/utils/score_counter.dart';
-import 'package:scouting_qr/utils/selection_divider.dart';
+import 'package:scouting_qr/widgets/boolean_switch.dart';
+import 'package:scouting_qr/widgets/score_counter.dart';
+import 'package:scouting_qr/widgets/selection_divider.dart';
 
 class AutonomousForm extends StatefulWidget {
   AutonomousForm({
@@ -26,7 +26,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
   AutonomousPosition? autoStartingPosition;
   bool isLeave = false;
 
-  int l4Scored = 0;
+  int Function() l4Scored = () => 0;
   int l4Failed = 0;
   int l3Scored = 0;
   int l3Failed = 0;
@@ -105,11 +105,11 @@ class _AutonomousFormState extends State<AutonomousForm> {
                     children: [
                       Expanded(
                         child: ScoreCounter(
-                          count: l4Scored,
+                          count: l4Scored(),
                           label: "L4 Scored",
                           icon: Icons.looks_4,
-                          onChange:(p0) {
-                            l4Scored = p0;
+                          onChange:(final int p0) {
+                            l4Scored = always(p0);
                           },
                         ),
                       ),
@@ -321,7 +321,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           widget.gameData.autonomousData = AutonomousData(
                             startingAuto: autoStartingPosition,
                             isLeave: isLeave,
-                            l4Scored: l4Scored,
+                            l4Scored: l4Scored.call(),
                             l4Failed: l4Failed,
                             l3Scored: l3Scored,
                             l3Failed: l3Failed,
@@ -339,9 +339,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                             context, 
                             MaterialPageRoute(
                               builder: (final BuildContext context) =>
-                                QrCode()
-                                // TeleoparetedForm()
-                                // TeleoparetedForm(gameData: widget.gameData)
+                                TeleoparetedForm(gameData: widget.gameData)
                             )
                           );
                         }, 

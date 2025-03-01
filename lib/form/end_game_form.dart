@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:orbit_standard_library/orbit_standard_library.dart';
 import 'package:scouting_qr/enum/climb_status.dart';
-import 'package:scouting_qr/utils/boolean_switch.dart';
-import 'package:scouting_qr/utils/selection_divider.dart';
+import 'package:scouting_qr/widgets/boolean_switch.dart';
+import 'package:scouting_qr/widgets/selection_divider.dart';
 
 class EndGameForm extends StatefulWidget {
   const EndGameForm({super.key});

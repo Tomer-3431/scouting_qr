@@ -4,16 +4,15 @@ import 'package:scouting_qr/data/detail_data.dart';
 import 'package:scouting_qr/data/game_data.dart';
 import 'package:scouting_qr/enum/team_station.dart';
 import 'package:scouting_qr/form/autonomous_form.dart';
-import 'package:scouting_qr/utils/boolean_switch.dart';
-import 'package:scouting_qr/utils/score_counter.dart';
-import 'package:scouting_qr/utils/selection_divider.dart';
+import 'package:scouting_qr/widgets/boolean_switch.dart';
+import 'package:scouting_qr/widgets/score_counter.dart';
+import 'package:scouting_qr/widgets/selection_divider.dart';
 
 class DetailsForm extends StatefulWidget {
   DetailsForm({
     super.key,
     required this.gameData,
   });
-
   GameData gameData;
 
   @override
