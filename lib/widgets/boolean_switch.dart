@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:orbit_standard_library/orbit_standard_library.dart';
 
 class BooleanSwitch extends StatefulWidget {
   const BooleanSwitch({

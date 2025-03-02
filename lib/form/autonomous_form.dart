@@ -6,7 +6,6 @@ import 'package:scouting_qr/enum/autonomous_position.dart';
 import 'package:scouting_qr/enum/collection_zone.dart';
 import 'package:scouting_qr/form/details_form.dart';
 import 'package:scouting_qr/form/teleopareted_form.dart';
-import 'package:scouting_qr/qr_code/qr_code.dart';
 import 'package:scouting_qr/widgets/boolean_switch.dart';
 import 'package:scouting_qr/widgets/score_counter.dart';
 import 'package:scouting_qr/widgets/selection_divider.dart';
@@ -23,10 +22,11 @@ class AutonomousForm extends StatefulWidget {
 }
 
 class _AutonomousFormState extends State<AutonomousForm> {
+
   AutonomousPosition? autoStartingPosition;
   bool isLeave = false;
 
-  int Function() l4Scored = () => 0;
+  int l4Scored = 0;
   int l4Failed = 0;
   int l3Scored = 0;
   int l3Failed = 0;
@@ -74,7 +74,9 @@ class _AutonomousFormState extends State<AutonomousForm> {
                     children: [
                       Expanded(
                         child: BooleanSwitch(
-                          onChange: (value) => isLeave = value,
+                          onChange: (value) => setState(() {
+                            isLeave = value;
+                          }),
                         )
                       ),
 
@@ -89,9 +91,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           makeItem: (AutonomousPosition autoPosition) => autoPosition.name,
                           validate: always2(null),
                           value: autoStartingPosition,
-                          onChange: (p0) {
-                            autoStartingPosition = p0;
-                          },
+                          onChange: (p0) => autoStartingPosition = p0,
                         ),
                       ),
                     ],
@@ -105,12 +105,10 @@ class _AutonomousFormState extends State<AutonomousForm> {
                     children: [
                       Expanded(
                         child: ScoreCounter(
-                          count: l4Scored(),
+                          count: l4Scored,
                           label: "L4 Scored",
                           icon: Icons.looks_4,
-                          onChange:(final int p0) {
-                            l4Scored = always(p0);
-                          },
+                          onChange:(final int p0) => setState(() => l4Scored = p0),
                         ),
                       ),
 
@@ -121,11 +119,9 @@ class _AutonomousFormState extends State<AutonomousForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: l4Failed,
-                          label: "L4 Faild",
+                          label: "L4 Failed",
                           icon: Icons.clear,
-                          onChange:(p0) {
-                            l4Failed = p0;
-                          },
+                          onChange:(final int p0) => setState(() => l4Failed = p0),
                         ),
                       ),
                     ],
@@ -142,9 +138,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           count: l3Scored,
                           label: "L3 Scored",
                           icon: Icons.looks_3,
-                          onChange:(p0) {
-                            l3Scored = p0; 
-                          },
+                          onChange:(final int p0) => setState(() => l3Scored = p0),
                         ),
                       ),
 
@@ -155,11 +149,9 @@ class _AutonomousFormState extends State<AutonomousForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: l3Failed,
-                          label: "L3 Faild",
+                          label: "L3 Failed",
                           icon: Icons.clear,
-                          onChange:(p0) {
-                            l3Failed = p0;
-                          },
+                          onChange:(final int p0) => setState(() => l3Failed = p0),
                         ),
                       ),
                     ],
@@ -176,9 +168,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           count: l2Scored,
                           label: "L2 Scored",
                           icon: Icons.looks_3,
-                          onChange:(p0) {
-                            l2Scored = p0;
-                          },
+                          onChange:(final int p0) => setState(() => l2Scored = p0),
                         ),
                       ),
 
@@ -189,11 +179,9 @@ class _AutonomousFormState extends State<AutonomousForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: l2failed,
-                          label: "L2 Faild",
+                          label: "L2 Failed",
                           icon: Icons.clear,
-                          onChange:(p0) {
-                            l2failed = p0;
-                          },
+                          onChange:(final int p0) => setState(() => l2failed = p0),
                         ),
                       ),
                     ],
@@ -210,9 +198,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           count: l1Scored,
                           label: "L1 Scored",
                           icon: Icons.looks_3,
-                          onChange:(p0) {
-                            l1Scored = p0;
-                          },
+                          onChange:(final int p0) => setState(() => l1Scored = p0),
                         ),
                       ),
 
@@ -223,11 +209,9 @@ class _AutonomousFormState extends State<AutonomousForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: l1Failed,
-                          label: "L1 Faild",
+                          label: "L1 Failed",
                           icon: Icons.clear,
-                          onChange:(p0) {
-                            l1Failed = p0;
-                          },
+                          onChange:(final int p0) => setState(() => l1Failed = p0),
                         ),
                       ),
                     ],
@@ -244,9 +228,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           count: netScored,
                           label: "net Scored",
                           icon: Icons.looks_3,
-                          onChange:(p0) {
-                            netScored = p0;
-                          },
+                          onChange:(final int p0) => setState(() => netScored = p0),
                         ),
                       ),
 
@@ -257,11 +239,9 @@ class _AutonomousFormState extends State<AutonomousForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: netFailed,
-                          label: "net Faild",
+                          label: "net Failed",
                           icon: Icons.clear,
-                          onChange:(p0) {
-                            netFailed = p0;
-                          },
+                          onChange:(final int p0) => setState(() => netFailed = p0),
                         ),
                       ),
                     ],
@@ -275,9 +255,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                     count: removeAlgae,
                     label: "remove algae",
                     icon: Icons.ballot,
-                    onChange: (p0) {
-                      removeAlgae = p0;
-                    },
+                    onChange:(final int p0) => setState(() => removeAlgae = p0),
                   ),
 
                   Selector<CollectionZone>(
@@ -300,7 +278,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                       RoundedIconButton(
                         icon: Icons.arrow_back, 
                         onPress: () {
-                            Navigator.pop(
+                            Navigator.pushReplacement(
                               context, 
                               MaterialPageRoute(
                                 builder: (final BuildContext context) => 
@@ -321,7 +299,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           widget.gameData.autonomousData = AutonomousData(
                             startingAuto: autoStartingPosition,
                             isLeave: isLeave,
-                            l4Scored: l4Scored.call(),
+                            l4Scored: l4Scored,
                             l4Failed: l4Failed,
                             l3Scored: l3Scored,
                             l3Failed: l3Failed,
@@ -335,7 +313,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                             collectionZone: collectionZone
                           );
 
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context, 
                             MaterialPageRoute(
                               builder: (final BuildContext context) =>

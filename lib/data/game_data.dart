@@ -18,4 +18,9 @@ class GameData {
   TeleoparetedData? teleoparetedData;
   EndGameData? endGameData;
   GeneralData? generalData;
+
+  @override
+  String toString() {
+    return detailsData.toString();
+  }
 }

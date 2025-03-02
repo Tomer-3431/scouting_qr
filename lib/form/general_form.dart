@@ -1,29 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:orbit_standard_library/orbit_standard_library.dart';
+import 'package:scouting_qr/data/detail_data.dart';
 import 'package:scouting_qr/data/end_game_data.dart';
 import 'package:scouting_qr/data/game_data.dart';
-import 'package:scouting_qr/enum/climb_status.dart';
-import 'package:scouting_qr/form/general_form.dart';
-import 'package:scouting_qr/form/teleopareted_form.dart';
+import 'package:scouting_qr/data/general_data.dart';
+import 'package:scouting_qr/enum/algae_in_reef.dart';
+import 'package:scouting_qr/enum/team_station.dart';
+import 'package:scouting_qr/form/autonomous_form.dart';
+import 'package:scouting_qr/form/end_game_form.dart';
+import 'package:scouting_qr/qr_code/qr_code.dart';
 import 'package:scouting_qr/widgets/boolean_switch.dart';
 import 'package:scouting_qr/widgets/score_counter.dart';
 import 'package:scouting_qr/widgets/selection_divider.dart';
 
-class EndGameForm extends StatefulWidget {
-  EndGameForm({
+class GeneralForm extends StatefulWidget {
+  GeneralForm({
     super.key,
     required this.gameData,
   });
   GameData gameData;
 
   @override
-  State<EndGameForm> createState() => _EndGameFormState();
+  State<GeneralForm> createState() => _GeneralFormState();
 }
 
-class _EndGameFormState extends State<EndGameForm> {
+class _GeneralFormState extends State<GeneralForm> {
+
+  AlgaeInReef? algaeInReef;
+  bool isAlgaeFloorCollect = false;
+  bool isCoralFloorCollect = false;
+  bool isTouchedCage = false;
+
+  bool didDefense = false;
+  int defenseLevel = 0;
+  bool wasDefended = false;
+  int copeWithDefense = 0;
+
+  int drivingLevel = 0;
+  bool isStuck = false;
+  bool isFoulist = false;
   
-  ClimbStatus? climbStatus;
-  bool isClimbSuccess = false;
+  String comments = "";
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -44,36 +61,14 @@ class _EndGameFormState extends State<EndGameForm> {
             child: Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: 20,
-                vertical: 10,
+                vertical: 10
               ),
               child: Column(
-                children: [
-
-                  SectionDivider(label: "End Game"),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                  Selector<ClimbStatus>(
-                    options: ClimbStatus.values,
-                    placeholder: "Select the status climb of the robot",
-                    makeItem: (ClimbStatus climbStatus) => climbStatus.name,
-                    validate: always2(null),
-                    value: null,
-                    onChange: (p0) => climbStatus = p0
-                  ),
+                children: <Widget>[
+                  SectionDivider(label: "General"),
 
                   SizedBox(
-                    height: 20,
-                  ),
-
-                  BooleanSwitch(
-                    onChange: (value) => setState(() => isClimbSuccess = value),
-                  ),
-
-                  SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
 
                   Row(
@@ -81,11 +76,11 @@ class _EndGameFormState extends State<EndGameForm> {
                       RoundedIconButton(
                         icon: Icons.arrow_back, 
                         onPress: () {
-                            Navigator.pop(
+                            Navigator.pushReplacement(
                               context, 
                               MaterialPageRoute(
                                 builder: (final BuildContext context) => 
-                                  TeleoparetedForm(gameData: widget.gameData)
+                                  EndGameForm(gameData: widget.gameData)
                               )  
                             );
                         }, 
@@ -99,29 +94,40 @@ class _EndGameFormState extends State<EndGameForm> {
                       RoundedIconButton(
                         icon: Icons.arrow_forward,
                         onPress: () {
-                          widget.gameData.endGameData = EndGameData(
-                            climbStatus: climbStatus,
-                            isClimbSuccess: isClimbSuccess
+                          widget.gameData.generalData = GeneralData(
+                            algaeInReef: algaeInReef,
+                            isAlgaeFloorCollect: isAlgaeFloorCollect,
+                            isCoralFloorCollect: isCoralFloorCollect,
+                            isTouchedCage: isAlgaeFloorCollect,
+                            didDefense: didDefense,
+                            defenseLevel: defenseLevel,
+                            wasDefended: wasDefended,
+                            copeWithDefense: copeWithDefense,
+                            drivingLevel: drivingLevel,
+                            isStuck: isStuck,
+                            isFoulist: isFoulist,
+                            comments: comments
                           );
 
                           Navigator.pushReplacement(
                             context, 
                             MaterialPageRoute(
-                              builder: (context) => 
-                                GeneralForm(gameData: widget.gameData),
-                            )
+                              builder: (final BuildContext context) =>
+                                QrCode(gameData: widget.gameData)
+                            ) 
                           );
                         },
                         onLongPress: () {},
                       )
                     ],
                   )
-                ]
+
+                ],
               ),
             ),
           ),
         )
-      ]
+      ],
     ),
   );
 }

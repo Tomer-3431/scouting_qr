@@ -60,9 +60,7 @@ class _DetailsFormState extends State<DetailsForm> {
                       prefixIcon: const Icon(Icons.person),
                       suffixIcon: IconButton(
                         icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          scouterName.clear();
-                        },
+                        onPressed: scouterName.clear,
                       )
                     ),
                   ),
@@ -94,9 +92,7 @@ class _DetailsFormState extends State<DetailsForm> {
                       prefixIcon: const Icon(Icons.people),
                       suffixIcon: IconButton(
                         icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          matchNumber.clear();
-                        },
+                        onPressed: matchNumber.clear,
                       )
                     ),
                     keyboardType: TextInputType.number, 
@@ -114,9 +110,8 @@ class _DetailsFormState extends State<DetailsForm> {
                       prefixIcon: const Icon(Icons.numbers),
                       suffixIcon: IconButton(
                         icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          matchNumber.clear();
-                        },
+                        onPressed:
+                          matchNumber.clear,
                       )
                     ),
                     keyboardType: TextInputType.number,
@@ -127,7 +122,7 @@ class _DetailsFormState extends State<DetailsForm> {
                   ),
 
                   BooleanSwitch(
-                    onChange: (value) => isPlayed = value,
+                    onChange: (value) => setState(() => isPlayed = value),
                   ),
 
                   SizedBox(
@@ -148,7 +143,7 @@ class _DetailsFormState extends State<DetailsForm> {
                             isPlayed: isPlayed
                           );
 
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context, 
                             MaterialPageRoute(
                               builder: (final BuildContext context) =>

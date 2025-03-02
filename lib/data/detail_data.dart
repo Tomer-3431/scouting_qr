@@ -13,4 +13,9 @@ class DetailsData {
   int teamNumber;
   int matchNumber;
   bool isPlayed;
+
+  @override
+  String toString() {
+    return "TeamStation: ${teamStation.name} \n ScouterName: ${scouterName} \n teamNumber: ${teamNumber}";
+  }
 }

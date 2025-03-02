@@ -16,7 +16,7 @@ class GeneralData {
     required this.comments,
   });
 
-  AlgaeInReef algaeInReef;
+  AlgaeInReef? algaeInReef;
   bool isAlgaeFloorCollect;
   bool isCoralFloorCollect;
   bool isTouchedCage;

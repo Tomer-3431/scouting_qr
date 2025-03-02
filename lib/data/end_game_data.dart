@@ -6,6 +6,6 @@ class EndGameData {
     required this.isClimbSuccess,
   });
 
-  ClimbStatus climbStatus;
+  ClimbStatus? climbStatus;
   bool isClimbSuccess;
 }
