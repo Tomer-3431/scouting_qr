@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "C:\\programing\\lib\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\groovy\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\user\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\programing\\ScoutingQRCode\\scouting_qr\\android\\app\\.cxx\\RelWithDebInfo\\2c6s1d6i\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\user\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\programing\\ScoutingQRCode\\scouting_qr\\android\\app\\.cxx\\RelWithDebInfo\\2c6s1d6i\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
