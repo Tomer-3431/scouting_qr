@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scouting_qr/data/detail_data.dart';
 import 'package:scouting_qr/data/game_data.dart';
 import 'package:scouting_qr/form/details_form.dart';
 
@@ -12,13 +11,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: MaterialApp(
+    return MaterialApp(
         title: "Demacia Scouting",
         home: DetailsForm(gameData: GameData()),
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-      ));
+      );
   }
 }
