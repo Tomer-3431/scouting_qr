@@ -72,7 +72,11 @@ class _EndGameFormState extends State<EndGameForm> {
                     style: TextStyle(fontSize: 18),
                   ),
                   Selector<ClimbStatus>(
-                    options: ClimbStatus.values,
+                    options: [
+                      ClimbStatus.DEEP,
+                      ClimbStatus.SHALLOW,
+                      ClimbStatus.DIDNT
+                    ],
                     placeholder: "Select The Status Climb Of The Robot",
                     makeItem: (ClimbStatus climbStatus) => climbStatus.title,
                     validate: always2(null),

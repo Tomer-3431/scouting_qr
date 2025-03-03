@@ -132,7 +132,11 @@ class _AutonomousFormState extends State<AutonomousForm> {
                     style: TextStyle(fontSize: 18),
                   ),
                   Selector<AutonomousPosition>(
-                    options: AutonomousPosition.values,
+                    options: [
+                      AutonomousPosition.LEFT,
+                      AutonomousPosition.MIDDLE,
+                      AutonomousPosition.RIGHT,
+                    ],
                     placeholder: "Select autonomation start",
                     makeItem: (AutonomousPosition autoPosition) => autoPosition.title,
                     validate: always2(null),
@@ -311,7 +315,11 @@ class _AutonomousFormState extends State<AutonomousForm> {
                     style: TextStyle(fontSize: 18),
                   ),
                   Selector<CollectionZone>(
-                    options: CollectionZone.values,
+                    options: [
+                      CollectionZone.LEFT_FEEDER,
+                      CollectionZone.GROUND,
+                      CollectionZone.RIGHT_FEEDER,
+                    ],
                     placeholder: "Select Where The Robot Collected Corals",
                     makeItem: (CollectionZone collectionZone) => collectionZone.title,
                     validate: always2(null),

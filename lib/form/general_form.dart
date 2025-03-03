@@ -103,7 +103,11 @@ class _GeneralFormState extends State<GeneralForm> {
                     style: TextStyle(fontSize: 18),
                   ),
                   Selector<AlgaeInReef>(
-                    options: AlgaeInReef.values,
+                    options: [
+                      AlgaeInReef.DIDNT_TRY,
+                      AlgaeInReef.DIRECT,
+                      AlgaeInReef.DROP,
+                    ],
                     placeholder: "Select what the team did with algae in the reef",
                     makeItem: (AlgaeInReef algaeInReef) => algaeInReef.title,
                     validate: always2(null),
@@ -158,7 +162,7 @@ class _GeneralFormState extends State<GeneralForm> {
                     label: "Defense Level",
                     min: 0,
                     max: 5,
-                    divisions: 6,
+                    divisions: 5,
                     onChange: (value) => setState(() => defenseLevel = value.toInt()),
                     value: defenseLevel.toDouble(),
                   ),
@@ -182,7 +186,7 @@ class _GeneralFormState extends State<GeneralForm> {
 
                   LevelSlider(
                     label: "Cope With Defense Level", 
-                    divisions: 6, 
+                    divisions: 5, 
                     max: 5, 
                     min: 0, 
                     onChange: (value) => setState(() => copeWithDefense = value.toInt()), 
