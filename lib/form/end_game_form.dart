@@ -26,6 +26,18 @@ class _EndGameFormState extends State<EndGameForm> {
   bool isClimbSuccess = false;
 
   @override
+  void initState() {
+    super.initState();
+
+    if (widget.gameData.endGameData != null) {
+      EndGameData data = widget.gameData.endGameData!;
+
+      climbStatus = data.climbStatus;
+      isClimbSuccess = data.isClimbSuccess;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) => Scaffold(
     resizeToAvoidBottomInset: false,
     appBar: AppBar(
@@ -55,12 +67,16 @@ class _EndGameFormState extends State<EndGameForm> {
                     height: 20,
                   ),
 
+                  Text(
+                    "Choose The Status Climb Of The Robot: ",
+                    style: TextStyle(fontSize: 18),
+                  ),
                   Selector<ClimbStatus>(
                     options: ClimbStatus.values,
-                    placeholder: "Select the status climb of the robot",
-                    makeItem: (ClimbStatus climbStatus) => climbStatus.name,
+                    placeholder: "Select The Status Climb Of The Robot",
+                    makeItem: (ClimbStatus climbStatus) => climbStatus.title,
                     validate: always2(null),
-                    value: null,
+                    value: climbStatus,
                     onChange: (p0) => climbStatus = p0
                   ),
 
@@ -68,6 +84,11 @@ class _EndGameFormState extends State<EndGameForm> {
                     height: 20,
                   ),
 
+                  Text(
+                    "Check This Switch If The Climb Was Successfull: ",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
                   BooleanSwitch(
                     onChange: (value) => setState(() => isClimbSuccess = value),
                   ),
@@ -81,13 +102,20 @@ class _EndGameFormState extends State<EndGameForm> {
                       RoundedIconButton(
                         icon: Icons.arrow_back, 
                         onPress: () {
-                            Navigator.pop(
+                          if (climbStatus != null) {
+                            widget.gameData.endGameData = EndGameData(
+                              climbStatus: climbStatus!,
+                              isClimbSuccess: isClimbSuccess
+                            );
+                            
+                            Navigator.pushReplacement(
                               context, 
                               MaterialPageRoute(
                                 builder: (final BuildContext context) => 
                                   TeleoparetedForm(gameData: widget.gameData)
                               )  
                             );
+                          }
                         }, 
                         onLongPress: () {}
                       ),
@@ -99,18 +127,20 @@ class _EndGameFormState extends State<EndGameForm> {
                       RoundedIconButton(
                         icon: Icons.arrow_forward,
                         onPress: () {
-                          widget.gameData.endGameData = EndGameData(
-                            climbStatus: climbStatus,
-                            isClimbSuccess: isClimbSuccess
-                          );
+                          if (climbStatus != null) {
+                            widget.gameData.endGameData = EndGameData(
+                              climbStatus: climbStatus!,
+                              isClimbSuccess: isClimbSuccess
+                            );
 
-                          Navigator.pushReplacement(
-                            context, 
-                            MaterialPageRoute(
-                              builder: (context) => 
-                                GeneralForm(gameData: widget.gameData),
-                            )
-                          );
+                            Navigator.pushReplacement(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (context) => 
+                                  GeneralForm(gameData: widget.gameData),
+                              )
+                            );
+                          }
                         },
                         onLongPress: () {},
                       )

@@ -12,7 +12,7 @@ class SectionDivider extends StatelessWidget {
           line,
           Text(
             label,
-            style: TextStyle(color: color),
+            style: TextStyle(color: color, fontSize: 20),
           ),
           line,
         ],
@@ -23,7 +23,7 @@ class SectionDivider extends StatelessWidget {
           margin: const EdgeInsets.only(left: 15.0, right: 10.0),
           child: Divider(
             thickness: 2,
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.red.withAlpha(200),
             height: 50,
           ),
         ),

@@ -38,6 +38,8 @@ class LevelSlider extends StatelessWidget {
           children: <Widget>[
             Text(
               label,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
             ),
             Slider(
               min: min,

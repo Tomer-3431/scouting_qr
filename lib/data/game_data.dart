@@ -21,6 +21,6 @@ class GameData {
 
   @override
   String toString() {
-    return detailsData.toString();
+    return "={\"\",\"\",$detailsData,\"\",$autonomousData,\"\",$teleoparetedData,\"\",$endGameData,\"\",$generalData}";
   }
 }

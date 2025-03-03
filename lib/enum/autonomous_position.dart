@@ -1,7 +1,15 @@
-enum AutonomousPosition {
-  LEFT,
-  MIDDLE,
-  RIGHT;
+import 'package:scouting_qr/enum/enum_options.dart';
 
-  const AutonomousPosition();
+enum AutonomousPosition implements EnumOptions{
+  LEFT("Left", "Left"),
+  MIDDLE("Middle", "Middle"),
+  RIGHT("Right", "Right"),
+  NOT_PLAYED("Not Played", "");
+
+  @override
+  final String title;
+  @override
+  final String sheetsName;
+
+  const AutonomousPosition(this.title, this.sheetsName);
 }

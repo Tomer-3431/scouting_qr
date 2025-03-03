@@ -3,7 +3,6 @@ import 'package:scouting_qr/data/game_data.dart';
 import 'package:scouting_qr/data/teleopareted_data.dart';
 import 'package:scouting_qr/form/autonomous_form.dart';
 import 'package:scouting_qr/form/end_game_form.dart';
-import 'package:scouting_qr/qr_code/qr_code.dart';
 import 'package:scouting_qr/widgets/score_counter.dart';
 import 'package:scouting_qr/widgets/selection_divider.dart';
 
@@ -33,6 +32,29 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
   int netScored = 0;
   int netFailed = 0;
   int stolenAlgae = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.gameData.teleoparetedData != null) {
+      TeleoparetedData data = widget.gameData.teleoparetedData!;
+
+      l4Scored = data.l4Scored;
+      l4Failed = data.l4Failed;
+      l3Scored = data.l3Scored;
+      l3Failed = data.l3Failed;
+      l2Scored = data.l2Scored;
+      l2failed = data.l2Failed;
+      l1Scored = data.l1Scored;
+      l1Failed = data.l1Failed;
+
+      processorScored = data.processorScored;
+      netScored = data.netScored;
+      netFailed = data.netFailed;
+      stolenAlgae = data.stolenAlgae;
+    }
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -81,8 +103,8 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: l4Failed,
-                          label: "L4 Faild",
-                          icon: Icons.clear,
+                          label: "L4 Failed",
+                          icon: Icons.looks_4_outlined,
                           onChange:(final int p0) => setState(() => l4Failed = p0),
                         ),
                       ),
@@ -111,8 +133,8 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: l3Failed,
-                          label: "L3 Faild",
-                          icon: Icons.clear,
+                          label: "L3 Failed",
+                          icon: Icons.looks_3_outlined,
                           onChange:(final int p0) => setState(() => l3Failed = p0),
                         ),
                       ),
@@ -129,7 +151,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                         child: ScoreCounter(
                           count: l2Scored,
                           label: "L2 Scored",
-                          icon: Icons.looks_3,
+                          icon: Icons.looks_two,
                           onChange:(final int p0) => setState(() => l2Scored = p0),
                         ),
                       ),
@@ -141,8 +163,8 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: l2failed,
-                          label: "L2 Faild",
-                          icon: Icons.clear,
+                          label: "L2 Failed",
+                          icon: Icons.looks_two_outlined,
                           onChange:(final int p0) => setState(() => l2failed = p0),
                         ),
                       ),
@@ -159,7 +181,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                         child: ScoreCounter(
                           count: l1Scored,
                           label: "L1 Scored",
-                          icon: Icons.looks_3,
+                          icon: Icons.looks_one,
                           onChange:(final int p0) => setState(() => l1Scored = p0),
                         ),
                       ),
@@ -171,8 +193,8 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: l1Failed,
-                          label: "L1 Faild",
-                          icon: Icons.clear,
+                          label: "L1 Failed",
+                          icon: Icons.looks_one_outlined,
                           onChange:(final int p0) => setState(() => l1Failed = p0),
                         ),
                       ),
@@ -186,7 +208,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                   ScoreCounter(
                     count: processorScored,
                     label: "processor scored",
-                    icon: Icons.abc,
+                    icon: Icons.spoke_rounded,
                     onChange:(final int p0) => setState(() => processorScored = p0),
                   ),
 
@@ -200,7 +222,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                         child: ScoreCounter(
                           count: netScored,
                           label: "net Scored",
-                          icon: Icons.looks_3,
+                          icon: Icons.amp_stories,
                           onChange:(final int p0) => setState(() => netScored = p0),
                        ),
                       ),
@@ -212,7 +234,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                       Expanded(
                         child: ScoreCounter(
                           count: netFailed,
-                          label: "net Faild",
+                          label: "net Failed",
                           icon: Icons.clear,
                           onChange:(final int p0) => setState(() => netFailed = p0),
                         ),
@@ -236,13 +258,28 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                       RoundedIconButton(
                         icon: Icons.arrow_back, 
                         onPress: () {
-                            Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (final BuildContext context) => 
-                                  AutonomousForm(gameData: widget.gameData)
-                              )  
-                            );
+                          widget.gameData.teleoparetedData = TeleoparetedData(
+                            l4Scored: l4Scored,
+                            l4Failed: l4Failed,
+                            l3Scored: l3Scored,
+                            l3Failed: l3Failed,
+                            l2Scored: l2Scored,
+                            l2Failed: l2failed,
+                            l1Scored: l1Scored,
+                            l1Failed: l1Failed,
+                            processorScored: processorScored,
+                            netScored: netScored,
+                            netFailed: netFailed,
+                            stolenAlgae: stolenAlgae,
+                          );
+
+                          Navigator.pushReplacement(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (final BuildContext context) => 
+                                AutonomousForm(gameData: widget.gameData)
+                            )  
+                          );
                         }, 
                         onLongPress: () {}
                       ),

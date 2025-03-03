@@ -6,6 +6,11 @@ class EndGameData {
     required this.isClimbSuccess,
   });
 
-  ClimbStatus? climbStatus;
+  ClimbStatus climbStatus;
   bool isClimbSuccess;
+
+  @override
+  String toString() {
+    return "\"${climbStatus.sheetsName}\",$isClimbSuccess";
+  }
 }

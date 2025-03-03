@@ -27,4 +27,9 @@ class TeleoparetedData {
   int netScored;
   int netFailed;
   int stolenAlgae;
+
+  @override
+  String toString() {
+    return "$l4Scored,$l4Failed,$l3Scored,$l3Failed,$l2Scored,$l2Failed,$l1Scored,$l1Failed,$processorScored,$netScored,$netFailed,$stolenAlgae";
+  }
 }

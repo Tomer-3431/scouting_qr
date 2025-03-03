@@ -3,7 +3,7 @@ import 'package:scouting_qr/enum/collection_zone.dart';
 
 class AutonomousData {
   AutonomousData({
-    this.startingAuto,
+    required this.startingAuto,
     required this.isLeave,
     required this.l4Scored,
     required this.l4Failed,
@@ -16,10 +16,10 @@ class AutonomousData {
     required this.netScored,
     required this.netFailed,
     required this.removeAlgae,
-    this.collectionZone,
+    required this.collectionZone,
   });
 
-  AutonomousPosition? startingAuto;
+  AutonomousPosition startingAuto;
   bool isLeave;
 
   int l4Scored;
@@ -35,5 +35,10 @@ class AutonomousData {
   int netFailed;
   int removeAlgae;
 
-  CollectionZone? collectionZone;
+  CollectionZone collectionZone;
+
+  @override
+  String toString() {
+    return "\"${startingAuto.sheetsName}\",$isLeave,$l4Scored,$l4Failed,$l3Scored,$l3Failed,$l2Scored,$l2Failed,$l1Scored,$l1Failed,$netScored,$netFailed,$removeAlgae,\"${collectionZone.sheetsName}\"";  
+  }
 }

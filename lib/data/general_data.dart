@@ -16,7 +16,7 @@ class GeneralData {
     required this.comments,
   });
 
-  AlgaeInReef? algaeInReef;
+  AlgaeInReef algaeInReef;
   bool isAlgaeFloorCollect;
   bool isCoralFloorCollect;
   bool isTouchedCage;
@@ -31,4 +31,9 @@ class GeneralData {
   bool isFoulist;
 
   String comments;
+
+  @override
+  String toString() {
+    return "\"${algaeInReef.sheetsName}\",$isAlgaeFloorCollect,$isCoralFloorCollect,$isTouchedCage,$didDefense,${didDefense ? defenseLevel : "\"\""},$wasDefended,${wasDefended ? copeWithDefense : "\"\""},$drivingLevel,$isStuck,$isFoulist,\"$comments\"";
+  }
 }
