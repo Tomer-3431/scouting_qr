@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:scouting_qr/data/game_data.dart';
+import 'package:scouting_qr/data/technical_data.dart';
+import 'package:scouting_qr/form/details_form.dart';
 import 'package:scouting_qr/widgets/demacia_app_bar.dart';
-import 'package:scouting_qr/form/general_form.dart';
 import 'package:scouting_qr/widgets/score_counter.dart';
 import 'package:scouting_qr/widgets/selection_divider.dart';
 
@@ -19,6 +20,17 @@ class NotPlayedQrCode extends StatefulWidget {
 
 class _NotPlayedQrCodeState extends State<NotPlayedQrCode> {
   
+  @override
+  void initState() {
+    super.initState();
+
+    widget.gameData.technicalData = TechnicalData(
+      version: "1.0.0",
+      time: DateTime.now(), 
+      id: "${widget.gameData.detailsData!.matchNumber}|${widget.gameData.detailsData!.teamStation.getIndexLetter()}|${widget.gameData.detailsData!.matchTeam.teamNum}"
+    );
+  }
+
   @override
   Widget build(BuildContext context) => PopScope(
     canPop: false,
@@ -61,10 +73,18 @@ class _NotPlayedQrCodeState extends State<NotPlayedQrCode> {
                 ),
     
                 QrImageView(
-                  data: "={\"\",\"\",${widget.gameData.detailsData},\"\",\"\",0,0,0,0,0,0,0,0,0,0,0,\"\",\"\",0,0,0,0,0,0,0,0,0,0,0,0}",
-                  size: 200,
+                  data: widget.gameData.notPlayedString(),
+                  size: 300,
                   backgroundColor: Colors.white,
-                  foregroundColor: Colors.deepPurple,
+                ),
+
+                SizedBox(
+                  height: 20,
+                ),
+    
+                TextField(
+                  controller: TextEditingController(text: widget.gameData.toString()),
+                  readOnly: true,
                 ),
     
                 SizedBox(
@@ -74,6 +94,14 @@ class _NotPlayedQrCodeState extends State<NotPlayedQrCode> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text(
+                      "To Go Back",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
                     RoundedIconButton(
                       icon: Icons.arrow_back,
                       onPress: () {
@@ -81,7 +109,34 @@ class _NotPlayedQrCodeState extends State<NotPlayedQrCode> {
                           context, 
                           MaterialPageRoute(
                             builder: (final BuildContext context) =>
-                              GeneralForm(gameData: widget.gameData)
+                              DetailsForm(gameData: widget.gameData)
+                          )
+                        );
+                      },
+                      onLongPress: () {},
+                    )
+                  ],
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "To Next Game",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    RoundedIconButton(
+                      icon: Icons.arrow_forward,
+                      onPress: () {
+                        Navigator.pushReplacement(
+                          context, 
+                          MaterialPageRoute(
+                            builder: (final BuildContext context) =>
+                              DetailsForm(gameData: GameData())
                           )
                         );
                       },

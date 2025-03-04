@@ -3,8 +3,7 @@ import 'package:scouting_qr/enum/enum_options.dart';
 enum ClimbStatus implements EnumOptions{
   DIDNT("Did Not Climb", "Didn't"),
   DEEP("Deep", "DEEP"),
-  SHALLOW("Shallow", "SHALLOW"),
-  NOT_PLAYED("Not Played", "");
+  SHALLOW("Shallow", "SHALLOW");
 
   @override
   final String title;

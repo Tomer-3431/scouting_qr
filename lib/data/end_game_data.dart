@@ -11,6 +11,10 @@ class EndGameData {
 
   @override
   String toString() {
-    return "\"${climbStatus.sheetsName}\",$isClimbSuccess";
+    return "${climbStatus.sheetsName},$isClimbSuccess";
+  }
+
+  static String notPlayedString() {
+    return ",,";
   }
 }

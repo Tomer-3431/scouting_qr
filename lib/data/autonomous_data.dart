@@ -39,6 +39,10 @@ class AutonomousData {
 
   @override
   String toString() {
-    return "\"${startingAuto.sheetsName}\",$isLeave,$l4Scored,$l4Failed,$l3Scored,$l3Failed,$l2Scored,$l2Failed,$l1Scored,$l1Failed,$netScored,$netFailed,$removeAlgae,\"${collectionZone.sheetsName}\"";  
+    return "${startingAuto.sheetsName},$isLeave,$l4Scored,$l4Failed,$l3Scored,$l3Failed,$l2Scored,$l2Failed,$l1Scored,$l1Failed,$netScored,$netFailed,$removeAlgae,${collectionZone.sheetsName}";  
+  }
+
+  static String notPlayedString() {
+    return ",,0,0,0,0,0,0,0,0,0,0,0,";
   }
 }

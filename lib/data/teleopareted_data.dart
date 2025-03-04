@@ -32,4 +32,8 @@ class TeleoparetedData {
   String toString() {
     return "$l4Scored,$l4Failed,$l3Scored,$l3Failed,$l2Scored,$l2Failed,$l1Scored,$l1Failed,$processorScored,$netScored,$netFailed,$stolenAlgae";
   }
+
+  static notPlayedString() {
+    return "0,0,0,0,0,0,0,0,0,0,0,0";
+  }
 }

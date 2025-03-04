@@ -19,6 +19,6 @@ class DetailsData {
 
   @override
   String toString() {
-    return "\"${teamStation.sheetsName}\",\"$scouterName\",\"${scouterTeam.sheetsName}\",\"${matchTeam.sheetsName}\",$matchNumber,$isPlayed";
+    return "${teamStation.sheetsName},$scouterName,${scouterTeam.sheetsName},${matchTeam.sheetsName},$matchNumber,$isPlayed";
   }
 }

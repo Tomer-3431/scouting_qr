@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:orbit_standard_library/orbit_standard_library.dart';
 import 'package:scouting_qr/data/game_data.dart';
 import 'package:scouting_qr/data/general_data.dart';
@@ -246,6 +247,9 @@ class _GeneralFormState extends State<GeneralForm> {
                           onPressed: comments.clear,
                         )
                       ),
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.deny(RegExp(r'[!=,(){}|<>]'))
+                      ]
                     ),
     
                     SizedBox(
@@ -307,7 +311,7 @@ class _GeneralFormState extends State<GeneralForm> {
                                 isFoulist: isFoulist,
                                 comments: comments.text
                               );
-    
+
                               Navigator.pushReplacement(
                                 context, 
                                 MaterialPageRoute(

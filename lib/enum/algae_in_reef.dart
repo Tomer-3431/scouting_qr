@@ -3,8 +3,7 @@ import 'package:scouting_qr/enum/enum_options.dart';
 enum AlgaeInReef implements EnumOptions{
   DIDNT_TRY("Did Not Try", "Didn't Try"),
   DROP("Drop", "Drop"),
-  DIRECT("Direct", "Direct"),
-  NOT_PLAYED("Not Played", "");
+  DIRECT("Direct", "Direct");
 
   @override
   final String title;

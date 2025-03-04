@@ -34,6 +34,10 @@ class GeneralData {
 
   @override
   String toString() {
-    return "\"${algaeInReef.sheetsName}\",$isAlgaeFloorCollect,$isCoralFloorCollect,$isTouchedCage,$didDefense,${didDefense ? defenseLevel : "\"\""},$wasDefended,${wasDefended ? copeWithDefense : "\"\""},$drivingLevel,$isStuck,$isFoulist,\"$comments\"";
+    return "${algaeInReef.sheetsName},$isAlgaeFloorCollect,$isCoralFloorCollect,$isTouchedCage,$didDefense,${didDefense ? defenseLevel : ""},$wasDefended,${wasDefended ? copeWithDefense : ""},$drivingLevel,$isStuck,$isFoulist,$comments";
+  }
+
+  static String notPlayedString() {
+    return ",,,,,,,,,,";
   }
 }

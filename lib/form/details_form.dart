@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:orbit_standard_library/orbit_standard_library.dart';
 import 'package:scouting_qr/data/detail_data.dart';
 import 'package:scouting_qr/data/game_data.dart';
+import 'package:scouting_qr/qr_code/not_played_qr_code.dart';
 import 'package:scouting_qr/widgets/demacia_app_bar.dart';
 import 'package:scouting_qr/enum/team_station.dart';
 import 'package:scouting_qr/enum/team.dart';
 import 'package:scouting_qr/form/autonomous_form.dart';
-import 'package:scouting_qr/qr_code/not_played_qr_code.dart';
 import 'package:scouting_qr/widgets/boolean_switch.dart';
 import 'package:scouting_qr/widgets/score_counter.dart';
 import 'package:scouting_qr/widgets/selection_divider.dart';
@@ -29,7 +29,7 @@ class _DetailsFormState extends State<DetailsForm> {
   final TextEditingController scouterName = TextEditingController();
   final TextEditingController matchNumber = TextEditingController();
   TeamStation? teamStation;
-  Team? scouterTeam;
+  Team scouterTeam = Team.DEMACIA;
   Team? matchTeam;
   bool isPlayed = true;
 
@@ -42,7 +42,7 @@ class _DetailsFormState extends State<DetailsForm> {
       
       teamStation = data.teamStation;
       scouterName.text = data.scouterName;
-      scouterTeam = data.scouterTeam;
+      // scouterTeam = data.scouterTeam;
       matchTeam = data.matchTeam;
       matchNumber.text = data.matchNumber.toString();
       isPlayed = data.isPlayed;
@@ -81,26 +81,29 @@ class _DetailsFormState extends State<DetailsForm> {
                         suffixIcon: IconButton(
                           icon: const Icon(Icons.clear),
                           onPressed: scouterName.clear,
-                        )
+                        ),
                       ),
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.deny(RegExp(r'[!=,(){}|<>]'))
+                      ]
                     ),
     
                     SizedBox(
                       height: 20,
                     ),
     
-                    Text(
-                      "Enter Your Team:",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Selector<Team>(
-                      options: Team.values,
-                      placeholder: "Select Your Team",
-                      makeItem: (Team p0) => p0.title,
-                      validate: always2(null),
-                      value: scouterTeam,
-                      onChange: (p0) => scouterTeam = p0,
-                    ),
+                    // Text(
+                    //   "Enter Your Team:",
+                    //   style: TextStyle(fontSize: 18),
+                    // ),
+                    // Selector<Team>(
+                    //   options: Team.values,
+                    //   placeholder: "Select Your Team",
+                    //   makeItem: (Team p0) => p0.title,
+                    //   validate: always2(null),
+                    //   value: scouterTeam,
+                    //   onChange: (p0) => scouterTeam = p0,
+                    // ),
     
                     SizedBox(
                       height: 20,
@@ -196,14 +199,15 @@ class _DetailsFormState extends State<DetailsForm> {
                               isPlayed
                               && scouterName.text.isNotEmpty
                               && matchNumber.text.isNotEmpty
-                              && scouterTeam != null
+                              // && scouterTeam != null
                               && teamStation != null
                               && matchTeam != null
                             ) {
                               widget.gameData.detailsData = DetailsData(
                                 teamStation: teamStation!, 
                                 scouterName: scouterName.text, 
-                                scouterTeam: scouterTeam!, 
+                                scouterTeam: scouterTeam,
+                                // scouterTeam: scouterTeam!, 
                                 matchTeam: matchTeam!,
                                 matchNumber: int.parse(matchNumber.text), 
                                 isPlayed: isPlayed,
@@ -220,14 +224,15 @@ class _DetailsFormState extends State<DetailsForm> {
                               !isPlayed
                               && scouterName.text.isNotEmpty
                               && matchNumber.text.isNotEmpty
-                              && scouterTeam != null
+                              // && scouterTeam != null
                               && teamStation != null
                               && matchTeam != null
                             ) {
                               widget.gameData.detailsData = DetailsData(
                                 teamStation: teamStation!, 
                                 scouterName: scouterName.text, 
-                                scouterTeam: scouterTeam!, 
+                                scouterTeam: scouterTeam,
+                                // scouterTeam: scouterTeam!, 
                                 matchTeam: matchTeam!,
                                 matchNumber: int.parse(matchNumber.text), 
                                 isPlayed: isPlayed,

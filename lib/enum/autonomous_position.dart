@@ -3,8 +3,7 @@ import 'package:scouting_qr/enum/enum_options.dart';
 enum AutonomousPosition implements EnumOptions{
   LEFT("Left", "Left"),
   MIDDLE("Middle", "Middle"),
-  RIGHT("Right", "Right"),
-  NOT_PLAYED("Not Played", "");
+  RIGHT("Right", "Right");
 
   @override
   final String title;

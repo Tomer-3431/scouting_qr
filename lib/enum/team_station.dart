@@ -14,4 +14,8 @@ enum TeamStation implements EnumOptions{
   final String sheetsName;
 
   const TeamStation(this.title, this.sheetsName);
+
+  String getIndexLetter() {
+    return String.fromCharCode(index + 65);
+  }
 }

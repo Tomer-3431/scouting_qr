@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:scouting_qr/data/game_data.dart';
+import 'package:scouting_qr/data/technical_data.dart';
 import 'package:scouting_qr/widgets/demacia_app_bar.dart';
 import 'package:scouting_qr/form/details_form.dart';
 import 'package:scouting_qr/form/general_form.dart';
@@ -19,6 +20,17 @@ class MainQrCode extends StatefulWidget {
 }
 
 class _MainQrCodeState extends State<MainQrCode> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.gameData.technicalData = TechnicalData(
+      version: "1.0.0",
+      time: DateTime.now(), 
+      id: "${widget.gameData.detailsData!.matchNumber}|${widget.gameData.detailsData!.teamStation.getIndexLetter()}|${widget.gameData.detailsData!.matchTeam.teamNum}"
+    );
+  }
   
   @override
   Widget build(BuildContext context) => PopScope(
@@ -49,9 +61,17 @@ class _MainQrCodeState extends State<MainQrCode> {
     
                 QrImageView(
                   data: widget.gameData.toString(),
-                  size: 200,
+                  size: 300,
                   backgroundColor: Colors.white,
-                  foregroundColor: Colors.deepPurple,
+                ),
+
+                SizedBox(
+                  height: 50,
+                ),
+
+                TextField(
+                  controller: TextEditingController(text: widget.gameData.toString()),
+                  readOnly: true,
                 ),
     
                 SizedBox(
