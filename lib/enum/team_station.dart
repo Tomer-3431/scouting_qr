@@ -1,6 +1,6 @@
 import 'package:scouting_qr/enum/enum_options.dart';
 
-enum TeamStation implements EnumOptions{
+enum TeamStation implements EnumOptions {
   BLUE_1("Blue 1", "Blue 1"),
   BLUE_2("Blue 2", "Blue 2"),
   BLUE_3("Blue 3", "Blue 3"),

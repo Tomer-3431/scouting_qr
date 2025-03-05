@@ -12,10 +12,10 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Demacia Scouting",
-        home: DetailsForm(gameData: GameData()),
-        theme: ThemeData.dark(),
-        debugShowCheckedModeBanner: false,
-      );
+      title: "Demacia Scouting",
+      home: DetailsForm(gameData: GameData()),
+      theme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

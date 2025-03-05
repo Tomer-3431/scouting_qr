@@ -1,6 +1,6 @@
 import 'package:scouting_qr/enum/enum_options.dart';
 
-enum AutonomousPosition implements EnumOptions{
+enum AutonomousPosition implements EnumOptions {
   LEFT("Left", "Left"),
   MIDDLE("Middle", "Middle"),
   RIGHT("Right", "Right");

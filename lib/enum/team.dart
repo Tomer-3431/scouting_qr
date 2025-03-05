@@ -1,6 +1,6 @@
 import 'package:scouting_qr/enum/enum_options.dart';
 
-enum Team implements EnumOptions{
+enum Team implements EnumOptions {
   MISCAR("1574 MisCar", "1574 - MisCar", 1574),
   VOLTRIX("1576 Voltrix", "1574 - Voltrix", 1576),
   STEAMPUNK("1577 Steampunk", "1577 - Steampunk", 1577),
@@ -8,7 +8,8 @@ enum Team implements EnumOptions{
   HAMOSAD("1657 Hamosad", "1657 - Hamosad", 1657),
   ORBIT("1690 Orbit", "1690 - Orbit", 1690),
   ELYSIUM("1937 Elysium", "1937 - Elysium", 1937),
-  CINDERELLA_TELL_NOF("1942 Cinderella Tel-Nof", "1942 - Cinderella Tel-Nof", 1942),
+  CINDERELLA_TELL_NOF(
+      "1942 Cinderella Tel-Nof", "1942 - Cinderella Tel-Nof", 1942),
   NEAT_TEAM("1943 Neat Team", "1943 - Neat Team", 1943),
   ELECTROBUNNY("1954 ElectroBunny", "1954 - ElectroBunny", 1954),
   ROBOACTIVE("2096 RoboActive", "2096 - RoboActive", 2096),
@@ -66,7 +67,7 @@ enum Team implements EnumOptions{
   TEST_TEAM1("9997 Test Team 1", "9997 Test Team", 9997),
   TEST_TEAM2("9998 Test Team 2", "9997 Test Team", 9998),
   TEST_TEAM3("9999 Test Team 3", "9999 Test Team", 9999);
-  
+
   @override
   final String title;
   @override

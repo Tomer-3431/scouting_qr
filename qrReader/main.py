@@ -29,7 +29,7 @@ if not creds or not creds.valid:
             "qrReader/credentials.json", SCOPES
         )
         creds = flow.run_local_server(port=0)
-    
+
     with open("qrReader/token.json", "w") as token:
         token.write(creds.to_json())
 
@@ -42,8 +42,10 @@ cap.set(cv.CAP_PROP_FRAME_HEIGHT, 720)
 seenBarcodes = []
 unsendBarcodes = []
 
+
 def checkConnection():
     respones = requests.get("https://www.google.com", timeout=5)
+
 
 def sendToGoogleSheet(data: list[list[str]]) -> str:
     requestBody = {
@@ -51,46 +53,51 @@ def sendToGoogleSheet(data: list[list[str]]) -> str:
         "values": data,
     }
     result = (
-        service.spreadsheets().values()
+        service.spreadsheets()
+        .values()
         .append(
             spreadsheetId=SAMPLE_SPREADSHEET_ID,
             range=SAMPLE_RANGE_NAME,
             valueInputOption="USER_ENTERED",
-            body=requestBody
-        ).execute()
+            body=requestBody,
+        )
+        .execute()
     )
     return result
-    
+
+
 def writeToFile(barcode: str) -> None:
     f = open("qrReader/scoutingInfo.txt", "a")
     f.write(barcode + "\n")
     f.close()
 
+
 while True:
-    ret,frame = cap.read()
-    
-    if (len(unsendBarcodes) > 0):
+    ret, frame = cap.read()
+
+    if len(unsendBarcodes) > 0:
         try:
             checkConnection()
             result = sendToGoogleSheet(unsendBarcodes)
-            print("send unsended tags and saved on: " + result["updates"]["updatedRange"])
+            print(
+                "send unsended tags and saved on: " + result["updates"]["updatedRange"]
+            )
             unsendBarcodes = []
-        
+
         except requests.ConnectionError as e:
             print("wait for " + len(unsendBarcodes) + "to be send")
 
         except HttpError as e:
             print(e)
-            
-    
+
     try:
         for barcode in decode(frame):
-            myData: str = barcode.data.decode('utf-8')
+            myData: str = barcode.data.decode("utf-8")
             splitData: list[str] = myData.split(",")
             print(myData)
-            
+
             try:
-                if ((splitData[-1] not in seenBarcodes) and (len(splitData)> 2)):
+                if (splitData[-1] not in seenBarcodes) and (len(splitData) > 2):
                     writeToFile(myData)
                     checkConnection()
                     result = sendToGoogleSheet([splitData[2:]])
@@ -104,15 +111,22 @@ while True:
 
             except HttpError as e:
                 print(e)
-            
+
             pts = np.array([barcode.polygon], np.int32)
-            cv.polylines(frame,[pts],True,(255,0,0),5)
+            cv.polylines(frame, [pts], True, (255, 0, 0), 5)
             pts2 = barcode.rect
-            cv.putText(frame,myData,(pts2[0],pts2[1]),cv.FONT_HERSHEY_COMPLEX,1,(255,0,0),2)
+            cv.putText(
+                frame,
+                myData,
+                (pts2[0], pts2[1]),
+                cv.FONT_HERSHEY_COMPLEX,
+                1,
+                (255, 0, 0),
+                2,
+            )
     except Exception as e:
         print(e)
-    
-    cv.imshow('In', frame)
-    if cv.waitKey(1) & 0xFF == ord('q'):
+
+    cv.imshow("In", frame)
+    if cv.waitKey(1) & 0xFF == ord("q"):
         break
-    

@@ -14,7 +14,7 @@ class GameData {
     this.generalData,
     this.technicalData,
   });
-  
+
   DetailsData? detailsData;
   AutonomousData? autonomousData;
   TeleoparetedData? teleoparetedData;

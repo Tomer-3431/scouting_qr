@@ -20,7 +20,6 @@ class AutonomousForm extends StatefulWidget {
 }
 
 class _AutonomousFormState extends State<AutonomousForm> {
-
   bool isLeave = true;
 
   int l4Scored = 0;
@@ -47,7 +46,6 @@ class _AutonomousFormState extends State<AutonomousForm> {
 
       netScored = data.netScored;
       removeAlgae = data.removeAlgae;
-
     } else {
       isLeave = true;
 
@@ -63,183 +61,170 @@ class _AutonomousFormState extends State<AutonomousForm> {
 
   @override
   Widget build(BuildContext context) => PopScope(
-    canPop: false,
-    child: Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: DemaciaAppBar(),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Form(
-              child: Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10
-                ),
-                child: Column(
-                  children: <Widget>[
-                    SectionDivider(label: "Autonomous"),
-    
-                    SizedBox(
-                      height: 20,
-                    ),
-    
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Check The Switch If The Team Leaved In Auto",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              BooleanSwitch(
-                                onChange: (value) => setState(() => isLeave = value),
-                              ),
-                            ],
-                          )
-                        ),
-    
+        canPop: false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: DemaciaAppBar(),
+          body: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Form(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Column(
+                      children: <Widget>[
+                        SectionDivider(label: "Autonomous"),
                         SizedBox(
-                          width: 10,
+                          height: 20,
                         ),
-                      ],
-                    ),
-    
-                    SizedBox(
-                      height: 25,
-                    ),
-    
-                    ScoreCounter(
-                      count: l4Scored,
-                      label: "L4 Scored",
-                      icon: Icons.looks_4,
-                      onChange:(final int p0) => setState(() => l4Scored = p0),
-                    ),
-    
-                    SizedBox(
-                      height: 25,
-                    ),
-    
-                    ScoreCounter(
-                      count: l3Scored,
-                      label: "L3 Scored",
-                      icon: Icons.looks_3,
-                      onChange:(final int p0) => setState(() => l3Scored = p0),
-                    ),
-    
-                    SizedBox(
-                      height: 25,
-                    ),
-    
-                    ScoreCounter(
-                      count: l2Scored,
-                      label: "L2 Scored",
-                      icon: Icons.looks_two,
-                      onChange:(final int p0) => setState(() => l2Scored = p0),
-                    ),
-    
-                    SizedBox(
-                      height: 25,
-                    ),
-    
-                    ScoreCounter(
-                      count: l1Scored,
-                      label: "L1 Scored",
-                      icon: Icons.looks_one,
-                      onChange:(final int p0) => setState(() => l1Scored = p0),
-                    ),
-    
-                    SizedBox(
-                      height: 25,
-                    ),
-    
-                    ScoreCounter(
-                      count: netScored,
-                      label: "Net Scored",
-                      icon: Icons.amp_stories,
-                      onChange:(final int p0) => setState(() => netScored = p0),
-                    ),
-    
-                    SizedBox(
-                      height: 10,
-                    ),
-    
-                    ScoreCounter(
-                      count: removeAlgae,
-                      label: "remove algae",
-                      icon: Icons.spoke_outlined,
-                      onChange:(final int p0) => setState(() => removeAlgae = p0),
-                    ),
-    
-                    SizedBox(
-                      height: 20,
-                    ),
-    
-                    Row(
-                      children: [
-                        RoundedIconButton(
-                          icon: Icons.arrow_back, 
-                          onPress: () {
-                            widget.gameData.autonomousData = AutonomousData(
-                              isLeave: isLeave,
-                              l4Scored: l4Scored,
-                              l3Scored: l3Scored,
-                              l2Scored: l2Scored,
-                              l1Scored: l1Scored,
-                              netScored: netScored,
-                              removeAlgae: removeAlgae,
-                            );
-    
-                            Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (final BuildContext context) => 
-                                  DetailsForm(gameData: widget.gameData)
-                              )  
-                            );
-                          }, 
-                          onLongPress: () {}
+                        Row(
+                          children: [
+                            Expanded(
+                                child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Check The Switch If The Team Leaved In Auto",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                BooleanSwitch(
+                                  onChange: (value) =>
+                                      setState(() => isLeave = value),
+                                ),
+                              ],
+                            )),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
                         ),
-    
                         SizedBox(
-                          width: 120,
+                          height: 25,
                         ),
-    
-                        RoundedIconButton(
-                          icon: Icons.arrow_forward, 
-                          onPress: () {
-                            widget.gameData.autonomousData = AutonomousData(
-                              isLeave: isLeave,
-                              l4Scored: l4Scored,
-                              l3Scored: l3Scored,
-                              l2Scored: l2Scored,
-                              l1Scored: l1Scored,
-                              netScored: netScored,
-                              removeAlgae: removeAlgae,
-                            );
-  
-                            Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (final BuildContext context) =>
-                                  TeleoparetedForm(gameData: widget.gameData)
-                              )
-                            );
-                          }, 
-                          onLongPress: () {}
+                        ScoreCounter(
+                          count: l4Scored,
+                          label: "L4 Scored",
+                          icon: Icons.looks_4,
+                          onChange: (final int p0) =>
+                              setState(() => l4Scored = p0),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        ScoreCounter(
+                          count: l3Scored,
+                          label: "L3 Scored",
+                          icon: Icons.looks_3,
+                          onChange: (final int p0) =>
+                              setState(() => l3Scored = p0),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        ScoreCounter(
+                          count: l2Scored,
+                          label: "L2 Scored",
+                          icon: Icons.looks_two,
+                          onChange: (final int p0) =>
+                              setState(() => l2Scored = p0),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        ScoreCounter(
+                          count: l1Scored,
+                          label: "L1 Scored",
+                          icon: Icons.looks_one,
+                          onChange: (final int p0) =>
+                              setState(() => l1Scored = p0),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        ScoreCounter(
+                          count: netScored,
+                          label: "Net Scored",
+                          icon: Icons.amp_stories,
+                          onChange: (final int p0) =>
+                              setState(() => netScored = p0),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ScoreCounter(
+                          count: removeAlgae,
+                          label: "remove algae",
+                          icon: Icons.spoke_outlined,
+                          onChange: (final int p0) =>
+                              setState(() => removeAlgae = p0),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            RoundedIconButton(
+                                icon: Icons.arrow_back,
+                                onPress: () {
+                                  widget.gameData.autonomousData =
+                                      AutonomousData(
+                                    isLeave: isLeave,
+                                    l4Scored: l4Scored,
+                                    l3Scored: l3Scored,
+                                    l2Scored: l2Scored,
+                                    l1Scored: l1Scored,
+                                    netScored: netScored,
+                                    removeAlgae: removeAlgae,
+                                  );
+
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder:
+                                              (final BuildContext context) =>
+                                                  DetailsForm(
+                                                      gameData:
+                                                          widget.gameData)));
+                                },
+                                onLongPress: () {}),
+                            SizedBox(
+                              width: 120,
+                            ),
+                            RoundedIconButton(
+                                icon: Icons.arrow_forward,
+                                onPress: () {
+                                  widget.gameData.autonomousData =
+                                      AutonomousData(
+                                    isLeave: isLeave,
+                                    l4Scored: l4Scored,
+                                    l3Scored: l3Scored,
+                                    l2Scored: l2Scored,
+                                    l1Scored: l1Scored,
+                                    netScored: netScored,
+                                    removeAlgae: removeAlgae,
+                                  );
+
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder:
+                                              (final BuildContext context) =>
+                                                  TeleoparetedForm(
+                                                      gameData:
+                                                          widget.gameData)));
+                                },
+                                onLongPress: () {})
+                          ],
                         )
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
-        ],
-      ),
-    ),
-  );
+              )
+            ],
+          ),
+        ),
+      );
 }

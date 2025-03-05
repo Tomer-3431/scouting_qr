@@ -21,10 +21,9 @@ class GeneralForm extends StatefulWidget {
 }
 
 class _GeneralFormState extends State<GeneralForm> {
-
   bool didDefense = true;
   bool isStuck = true;
-  
+
   TextEditingController comments = TextEditingController();
 
   @override
@@ -38,7 +37,6 @@ class _GeneralFormState extends State<GeneralForm> {
       isStuck = data.isStuck;
 
       comments.text = data.comments;
-
     } else {
       didDefense = true;
       isStuck = true;
@@ -49,128 +47,111 @@ class _GeneralFormState extends State<GeneralForm> {
 
   @override
   Widget build(BuildContext context) => PopScope(
-    canPop: false,
-    child: Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: DemaciaAppBar(),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Form(
-              child: Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10
-                ),
-                child: Column(
-                  children: <Widget>[
-                    SectionDivider(label: "General"),
-    
-                    SizedBox(
-                      height: 20,
-                    ),
-    
-                    Text(
-                      "Select If The Team Did Defense: ",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    BooleanSwitch(
-                      onChange: (value) => didDefense = value,
-                    ),
-    
-                    SizedBox(
-                      height: 30,
-                    ),
-    
-                    Text(
-                      "Select If The Robot Was Stuck: ",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    BooleanSwitch(
-                      onChange: (value) => isStuck = value,
-                    ),
-    
-                    SizedBox(
-                      height: 25,
-                    ),
-    
-                    TextField(
-                      controller: comments,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: "Enter Comments",
-                        prefix: const Icon(Icons.comment),
-                        suffixIcon: IconButton(
-                          icon: const Icon(Icons.clear),
-                          onPressed: comments.clear,
-                        )
-                      ),
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.deny(RegExp(r'[!=,(){}|<>]'))
-                      ]
-                    ),
-    
-                    SizedBox(
-                      height: 30,
-                    ),
-    
-                    Row(
-                      children: [
-                        RoundedIconButton(
-                          icon: Icons.arrow_back, 
-                          onPress: () {
-                            widget.gameData.generalData = GeneralData(
-                              didDefense: didDefense,
-                              isStuck: isStuck,
-                              comments: comments.text
-                            );
-    
-                            Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (final BuildContext context) => 
-                                  EndGameForm(gameData: widget.gameData)
-                              )  
-                            );
-                          }, 
-                          onLongPress: () {}
-                        ),
-    
+        canPop: false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: DemaciaAppBar(),
+          body: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Form(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Column(
+                      children: <Widget>[
+                        SectionDivider(label: "General"),
                         SizedBox(
-                          width: 80,
+                          height: 20,
                         ),
-    
-                        RoundedIconButton(
-                          icon: Icons.arrow_forward,
-                          onPress: () {
-                            widget.gameData.generalData = GeneralData(
-                              didDefense: didDefense,
-                              isStuck: isStuck,
-                              comments: comments.text
-                            );
+                        Text(
+                          "Select If The Team Did Defense: ",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        BooleanSwitch(
+                          onChange: (value) => didDefense = value,
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "Select If The Robot Was Stuck: ",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        BooleanSwitch(
+                          onChange: (value) => isStuck = value,
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        TextField(
+                            controller: comments,
+                            decoration: InputDecoration(
+                                border: const OutlineInputBorder(),
+                                hintText: "Enter Comments",
+                                prefix: const Icon(Icons.comment),
+                                suffixIcon: IconButton(
+                                  icon: const Icon(Icons.clear),
+                                  onPressed: comments.clear,
+                                )),
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.deny(
+                                  RegExp(r'[!=,(){}|<>]'))
+                            ]),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            RoundedIconButton(
+                                icon: Icons.arrow_back,
+                                onPress: () {
+                                  widget.gameData.generalData = GeneralData(
+                                      didDefense: didDefense,
+                                      isStuck: isStuck,
+                                      comments: comments.text);
 
-                            Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (final BuildContext context) =>
-                                  MainQrCode(gameData: widget.gameData)
-                              ) 
-                            );
-                          },
-                          onLongPress: () {},
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder:
+                                              (final BuildContext context) =>
+                                                  EndGameForm(
+                                                      gameData:
+                                                          widget.gameData)));
+                                },
+                                onLongPress: () {}),
+                            SizedBox(
+                              width: 80,
+                            ),
+                            RoundedIconButton(
+                              icon: Icons.arrow_forward,
+                              onPress: () {
+                                widget.gameData.generalData = GeneralData(
+                                    didDefense: didDefense,
+                                    isStuck: isStuck,
+                                    comments: comments.text);
+
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (final BuildContext context) =>
+                                            MainQrCode(
+                                                gameData: widget.gameData)));
+                              },
+                              onLongPress: () {},
+                            )
+                          ],
                         )
                       ],
-                    )
-    
-                  ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
-        ],
-      ),
-    ),
-  );
+              )
+            ],
+          ),
+        ),
+      );
 }

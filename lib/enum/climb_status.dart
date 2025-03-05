@@ -1,6 +1,6 @@
 import 'package:scouting_qr/enum/enum_options.dart';
 
-enum ClimbStatus implements EnumOptions{
+enum ClimbStatus implements EnumOptions {
   DIDNT("Did Not Climb", "Didn't"),
   DEEP("Deep", "DEEP"),
   SHALLOW("Shallow", "SHALLOW");

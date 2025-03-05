@@ -1,6 +1,6 @@
 import 'package:scouting_qr/enum/enum_options.dart';
 
-enum CollectionZone implements EnumOptions{
+enum CollectionZone implements EnumOptions {
   FEEDER("Feeder", "Feeder"),
   GROUND("Ground", "Ground"),
   DIDNT("Did Not Collect", "Didnt");

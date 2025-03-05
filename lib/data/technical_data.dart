@@ -5,7 +5,7 @@ class TechnicalData {
     required this.id,
   });
 
-  final String version;
+  final Version version;
   final DateTime time;
   final String id;
 
@@ -16,11 +16,8 @@ class TechnicalData {
 }
 
 class Version {
-  const Version({
-    required this.major,
-    required this.minor,
-    required this.patch
-  });
+  const Version(
+      {required this.major, required this.minor, required this.patch});
 
   final int major;
   final int minor;

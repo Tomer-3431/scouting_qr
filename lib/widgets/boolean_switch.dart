@@ -13,9 +13,10 @@ class BooleanSwitch extends StatefulWidget {
 
 class _Switch extends State<BooleanSwitch> {
   bool light = true;
-  
-  static const WidgetStateProperty<Icon> thumbIcon = WidgetStateProperty<Icon>.fromMap(
-    <WidgetStatesConstraint, Icon> {
+
+  static const WidgetStateProperty<Icon> thumbIcon =
+      WidgetStateProperty<Icon>.fromMap(
+    <WidgetStatesConstraint, Icon>{
       WidgetState.selected: Icon(Icons.check),
       WidgetState.any: Icon(Icons.close),
     },
