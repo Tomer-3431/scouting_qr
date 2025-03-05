@@ -1,3 +1,2 @@
-**/qrReader/token.json
-
-qrReader\credentials.json
+/credentials.json
+/token.json

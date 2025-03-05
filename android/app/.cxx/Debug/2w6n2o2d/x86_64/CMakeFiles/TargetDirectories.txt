@@ -1,2 +1,0 @@
-C:/programing/ScoutingQRCode/scouting_qr/android/app/.cxx/Debug/2w6n2o2d/x86_64/CMakeFiles/edit_cache.dir
-C:/programing/ScoutingQRCode/scouting_qr/android/app/.cxx/Debug/2w6n2o2d/x86_64/CMakeFiles/rebuild_cache.dir
