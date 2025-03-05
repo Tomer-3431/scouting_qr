@@ -50,6 +50,18 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
       removeAlgae = data.stolenAlgae;
 
       collectionZone = data.collectionZone;
+
+    } else {
+      l4Scored = 0;
+      l3Scored = 0;
+      l2Scored = 0;
+      l1Scored = 0;
+
+      processorScored = 0;
+      netScored = 0;
+      removeAlgae = 0;
+
+      collectionZone = null;
     }
   }
 

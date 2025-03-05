@@ -7,7 +7,6 @@ class AutonomousData {
     required this.l1Scored,
     required this.netScored,
     required this.removeAlgae,
-    required this.collectionZone,
   });
 
   bool isLeave;

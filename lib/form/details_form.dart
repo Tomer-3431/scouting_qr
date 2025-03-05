@@ -26,8 +26,8 @@ class DetailsForm extends StatefulWidget {
 class _DetailsFormState extends State<DetailsForm> {
 
 
-  final TextEditingController scouterName = TextEditingController();
-  final TextEditingController matchNumber = TextEditingController();
+  TextEditingController scouterName = TextEditingController();
+  TextEditingController matchNumber = TextEditingController();
   TeamStation? teamStation;
   Team scouterTeam = Team.DEMACIA;
   Team? matchTeam;
@@ -42,10 +42,16 @@ class _DetailsFormState extends State<DetailsForm> {
       
       teamStation = data.teamStation;
       scouterName.text = data.scouterName;
-      // scouterTeam = data.scouterTeam;
       matchTeam = data.matchTeam;
       matchNumber.text = data.matchNumber.toString();
       isPlayed = data.isPlayed;
+    } else {
+
+      scouterName.text = "";
+      matchNumber.text = "";
+      teamStation = null;
+      matchTeam = null;
+      isPlayed = true;
     }
   }
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:orbit_standard_library/orbit_standard_library.dart';
 import 'package:scouting_qr/data/autonomous_data.dart';
 import 'package:scouting_qr/data/game_data.dart';
 import 'package:scouting_qr/widgets/demacia_app_bar.dart';
-import 'package:scouting_qr/enum/collection_zone.dart';
 import 'package:scouting_qr/form/details_form.dart';
 import 'package:scouting_qr/form/teleopareted_form.dart';
 import 'package:scouting_qr/widgets/boolean_switch.dart';
@@ -23,7 +21,7 @@ class AutonomousForm extends StatefulWidget {
 
 class _AutonomousFormState extends State<AutonomousForm> {
 
-  bool isLeave = false;
+  bool isLeave = true;
 
   int l4Scored = 0;
   int l3Scored = 0;
@@ -50,6 +48,16 @@ class _AutonomousFormState extends State<AutonomousForm> {
       netScored = data.netScored;
       removeAlgae = data.removeAlgae;
 
+    } else {
+      isLeave = true;
+
+      l4Scored = 0;
+      l3Scored = 0;
+      l2Scored = 0;
+      l1Scored = 0;
+
+      netScored = 0;
+      removeAlgae = 0;
     }
   }
 

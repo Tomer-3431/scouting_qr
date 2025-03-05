@@ -32,6 +32,9 @@ class _EndGameFormState extends State<EndGameForm> {
       EndGameData data = widget.gameData.endGameData!;
 
       climbStatus = data.climbStatus;
+
+    } else {
+      climbStatus = null;
     }
   }
 
