@@ -6,7 +6,6 @@ import 'package:scouting_qr/widgets/demacia_app_bar.dart';
 import 'package:scouting_qr/enum/climb_status.dart';
 import 'package:scouting_qr/form/general_form.dart';
 import 'package:scouting_qr/form/teleopareted_form.dart';
-import 'package:scouting_qr/widgets/boolean_switch.dart';
 import 'package:scouting_qr/widgets/score_counter.dart';
 import 'package:scouting_qr/widgets/selection_divider.dart';
 
@@ -24,7 +23,6 @@ class EndGameForm extends StatefulWidget {
 class _EndGameFormState extends State<EndGameForm> {
   
   ClimbStatus? climbStatus;
-  bool isClimbSuccess = false;
 
   @override
   void initState() {
@@ -34,7 +32,6 @@ class _EndGameFormState extends State<EndGameForm> {
       EndGameData data = widget.gameData.endGameData!;
 
       climbStatus = data.climbStatus;
-      isClimbSuccess = data.isClimbSuccess;
     }
   }
 
@@ -83,19 +80,6 @@ class _EndGameFormState extends State<EndGameForm> {
                       height: 20,
                     ),
     
-                    Text(
-                      "Check This Switch If The Climb Was Successfull: ",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    BooleanSwitch(
-                      onChange: (value) => setState(() => isClimbSuccess = value),
-                    ),
-    
-                    SizedBox(
-                      height: 20,
-                    ),
-    
                     Row(
                       children: [
                         RoundedIconButton(
@@ -104,7 +88,6 @@ class _EndGameFormState extends State<EndGameForm> {
                             if (climbStatus != null) {
                               widget.gameData.endGameData = EndGameData(
                                 climbStatus: climbStatus!,
-                                isClimbSuccess: isClimbSuccess
                               );
                               
                               Navigator.pushReplacement(
@@ -129,7 +112,6 @@ class _EndGameFormState extends State<EndGameForm> {
                             if (climbStatus != null) {
                               widget.gameData.endGameData = EndGameData(
                                 climbStatus: climbStatus!,
-                                isClimbSuccess: isClimbSuccess
                               );
     
                               Navigator.pushReplacement(

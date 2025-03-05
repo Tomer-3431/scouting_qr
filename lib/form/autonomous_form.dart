@@ -3,7 +3,6 @@ import 'package:orbit_standard_library/orbit_standard_library.dart';
 import 'package:scouting_qr/data/autonomous_data.dart';
 import 'package:scouting_qr/data/game_data.dart';
 import 'package:scouting_qr/widgets/demacia_app_bar.dart';
-import 'package:scouting_qr/enum/autonomous_position.dart';
 import 'package:scouting_qr/enum/collection_zone.dart';
 import 'package:scouting_qr/form/details_form.dart';
 import 'package:scouting_qr/form/teleopareted_form.dart';
@@ -24,20 +23,14 @@ class AutonomousForm extends StatefulWidget {
 
 class _AutonomousFormState extends State<AutonomousForm> {
 
-  AutonomousPosition? autoStartingPosition;
   bool isLeave = false;
 
   int l4Scored = 0;
-  int l4Failed = 0;
   int l3Scored = 0;
-  int l3Failed = 0;
   int l2Scored = 0;
-  int l2failed = 0;
   int l1Scored = 0;
-  int l1Failed = 0;
 
   int netScored = 0;
-  int netFailed = 0;
   int removeAlgae = 0;
 
   CollectionZone? collectionZone;
@@ -49,20 +42,14 @@ class _AutonomousFormState extends State<AutonomousForm> {
     if (widget.gameData.autonomousData != null) {
       AutonomousData data = widget.gameData.autonomousData!;
 
-      autoStartingPosition = data.startingAuto;
       isLeave = data.isLeave;
 
       l4Scored = data.l4Scored;
-      l4Failed = data.l4Failed;
       l3Scored = data.l3Scored;
-      l3Failed = data.l3Failed;
       l2Scored = data.l2Scored;
-      l2failed = data.l2Failed;
       l1Scored = data.l1Scored;
-      l1Failed = data.l1Failed;
 
       netScored = data.netScored;
-      netFailed = data.netFailed;
       removeAlgae = data.removeAlgae;
 
       collectionZone = data.collectionZone;
@@ -117,174 +104,58 @@ class _AutonomousFormState extends State<AutonomousForm> {
                     ),
     
                     SizedBox(
-                      height: 20,
+                      height: 25,
                     ),
     
-                    Text(
-                      "Enter The Starting Position Of The Robot:",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Selector<AutonomousPosition>(
-                      options: [
-                        AutonomousPosition.LEFT,
-                        AutonomousPosition.MIDDLE,
-                        AutonomousPosition.RIGHT,
-                      ],
-                      placeholder: "Select autonomation start",
-                      makeItem: (AutonomousPosition autoPosition) => autoPosition.title,
-                      validate: always2(null),
-                      value: autoStartingPosition,
-                      onChange: (p0) => autoStartingPosition = p0,
+                    ScoreCounter(
+                      count: l4Scored,
+                      label: "L4 Scored",
+                      icon: Icons.looks_4,
+                      onChange:(final int p0) => setState(() => l4Scored = p0),
                     ),
     
                     SizedBox(
                       height: 25,
                     ),
     
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ScoreCounter(
-                            count: l4Scored,
-                            label: "L4 Scored",
-                            icon: Icons.looks_4,
-                            onChange:(final int p0) => setState(() => l4Scored = p0),
-                          ),
-                        ),
-    
-                        SizedBox(
-                          width: 10,
-                        ),
-    
-                        Expanded(
-                          child: ScoreCounter(
-                            count: l4Failed,
-                            label: "L4 Failed",
-                            icon: Icons.looks_4_outlined,
-                            onChange:(final int p0) => setState(() => l4Failed = p0),
-                          ),
-                        ),
-                      ],
+                    ScoreCounter(
+                      count: l3Scored,
+                      label: "L3 Scored",
+                      icon: Icons.looks_3,
+                      onChange:(final int p0) => setState(() => l3Scored = p0),
                     ),
     
                     SizedBox(
                       height: 25,
                     ),
     
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ScoreCounter(
-                            count: l3Scored,
-                            label: "L3 Scored",
-                            icon: Icons.looks_3,
-                            onChange:(final int p0) => setState(() => l3Scored = p0),
-                          ),
-                        ),
-    
-                        SizedBox(
-                          width: 10,
-                        ),
-    
-                        Expanded(
-                          child: ScoreCounter(
-                            count: l3Failed,
-                            label: "L3 Failed",
-                            icon: Icons.looks_3_outlined,
-                            onChange:(final int p0) => setState(() => l3Failed = p0),
-                          ),
-                        ),
-                      ],
+                    ScoreCounter(
+                      count: l2Scored,
+                      label: "L2 Scored",
+                      icon: Icons.looks_two,
+                      onChange:(final int p0) => setState(() => l2Scored = p0),
                     ),
     
                     SizedBox(
                       height: 25,
                     ),
     
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ScoreCounter(
-                            count: l2Scored,
-                            label: "L2 Scored",
-                            icon: Icons.looks_two,
-                            onChange:(final int p0) => setState(() => l2Scored = p0),
-                          ),
-                        ),
-    
-                        SizedBox(
-                          width: 10,
-                        ),
-    
-                        Expanded(
-                          child: ScoreCounter(
-                            count: l2failed,
-                            label: "L2 Failed",
-                            icon: Icons.looks_two_outlined,
-                            onChange:(final int p0) => setState(() => l2failed = p0),
-                          ),
-                        ),
-                      ],
+                    ScoreCounter(
+                      count: l1Scored,
+                      label: "L1 Scored",
+                      icon: Icons.looks_one,
+                      onChange:(final int p0) => setState(() => l1Scored = p0),
                     ),
     
                     SizedBox(
                       height: 25,
                     ),
     
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ScoreCounter(
-                            count: l1Scored,
-                            label: "L1 Scored",
-                            icon: Icons.looks_one,
-                            onChange:(final int p0) => setState(() => l1Scored = p0),
-                          ),
-                        ),
-    
-                        SizedBox(
-                          width: 10,
-                        ),
-    
-                        Expanded(
-                          child: ScoreCounter(
-                            count: l1Failed,
-                            label: "L1 Failed",
-                            icon: Icons.looks_one_outlined,
-                            onChange:(final int p0) => setState(() => l1Failed = p0),
-                          ),
-                        ),
-                      ],
-                    ),
-    
-                    SizedBox(
-                      height: 25,
-                    ),
-    
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ScoreCounter(
-                            count: netScored,
-                            label: "Net Scored",
-                            icon: Icons.amp_stories,
-                            onChange:(final int p0) => setState(() => netScored = p0),
-                          ),
-                        ),
-    
-                        SizedBox(
-                          width: 10,
-                        ),
-    
-                        Expanded(
-                          child: ScoreCounter(
-                            count: netFailed,
-                            label: "Net Failed",
-                            icon: Icons.clear,
-                            onChange:(final int p0) => setState(() => netFailed = p0),
-                          ),
-                        ),
-                      ],
+                    ScoreCounter(
+                      count: netScored,
+                      label: "Net Scored",
+                      icon: Icons.amp_stories,
+                      onChange:(final int p0) => setState(() => netScored = p0),
                     ),
     
                     SizedBox(
@@ -308,11 +179,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                       style: TextStyle(fontSize: 18),
                     ),
                     Selector<CollectionZone>(
-                      options: [
-                        CollectionZone.LEFT_FEEDER,
-                        CollectionZone.GROUND,
-                        CollectionZone.RIGHT_FEEDER,
-                      ],
+                      options: CollectionZone.values,
                       placeholder: "Select Where The Robot Collected Corals",
                       makeItem: (CollectionZone collectionZone) => collectionZone.title,
                       validate: always2(null),
@@ -332,22 +199,15 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           icon: Icons.arrow_back, 
                           onPress: () {
                             if (
-                              autoStartingPosition != null
-                              && collectionZone != null
+                              collectionZone != null
                             ) {
                               widget.gameData.autonomousData = AutonomousData(
-                                startingAuto: autoStartingPosition!,
                                 isLeave: isLeave,
                                 l4Scored: l4Scored,
-                                l4Failed: l4Failed,
                                 l3Scored: l3Scored,
-                                l3Failed: l3Failed,
                                 l2Scored: l2Scored,
-                                l2Failed: l2failed,
                                 l1Scored: l1Scored,
-                                l1Failed: l1Failed,
                                 netScored: netScored,
-                                netFailed: netFailed,
                                 removeAlgae: removeAlgae,
                                 collectionZone: collectionZone!
                               );
@@ -372,22 +232,15 @@ class _AutonomousFormState extends State<AutonomousForm> {
                           icon: Icons.arrow_forward, 
                           onPress: () {
                             if (
-                              autoStartingPosition != null
-                              && collectionZone != null
+                              collectionZone != null
                             ) {
                               widget.gameData.autonomousData = AutonomousData(
-                                startingAuto: autoStartingPosition!,
                                 isLeave: isLeave,
                                 l4Scored: l4Scored,
-                                l4Failed: l4Failed,
                                 l3Scored: l3Scored,
-                                l3Failed: l3Failed,
                                 l2Scored: l2Scored,
-                                l2Failed: l2failed,
                                 l1Scored: l1Scored,
-                                l1Failed: l1Failed,
                                 netScored: netScored,
-                                netFailed: netFailed,
                                 removeAlgae: removeAlgae,
                                 collectionZone: collectionZone!
                               );
