@@ -1,5 +1,3 @@
-import 'package:scouting_qr/enum/collection_zone.dart';
-
 class AutonomousData {
   AutonomousData({
     required this.isLeave,
@@ -22,14 +20,12 @@ class AutonomousData {
   int netScored;
   int removeAlgae;
 
-  CollectionZone collectionZone;
-
   @override
   String toString() {
-    return "$isLeave,$l4Scored,$l3Scored,$l2Scored,$l1Scored,$netScored,$removeAlgae,${collectionZone.sheetsName}";  
+    return "$isLeave,$l4Scored,$l3Scored,$l2Scored,$l1Scored,$netScored,$removeAlgae";
   }
 
   static String notPlayedString() {
-    return ",,0,0,0,0,0,0,";
+    return ",,0,0,0,0,0,0";
   }
 }

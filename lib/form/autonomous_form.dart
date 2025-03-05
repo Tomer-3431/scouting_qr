@@ -33,8 +33,6 @@ class _AutonomousFormState extends State<AutonomousForm> {
   int netScored = 0;
   int removeAlgae = 0;
 
-  CollectionZone? collectionZone;
-
   @override
   void initState() {
     super.initState();
@@ -52,7 +50,6 @@ class _AutonomousFormState extends State<AutonomousForm> {
       netScored = data.netScored;
       removeAlgae = data.removeAlgae;
 
-      collectionZone = data.collectionZone;
     }
   }
 
@@ -173,45 +170,20 @@ class _AutonomousFormState extends State<AutonomousForm> {
                       height: 20,
                     ),
     
-                    Text(
-                      "Enter From Where The Robot Pickdup Corals: ",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Selector<CollectionZone>(
-                      options: CollectionZone.values,
-                      placeholder: "Select Where The Robot Collected Corals",
-                      makeItem: (CollectionZone collectionZone) => collectionZone.title,
-                      validate: always2(null),
-                      value: collectionZone,
-                      onChange: (p0) {
-                        collectionZone = p0;
-                      },
-                    ),
-    
-                    SizedBox(
-                      height: 20,
-                    ),
-    
                     Row(
                       children: [
                         RoundedIconButton(
                           icon: Icons.arrow_back, 
                           onPress: () {
-                            if (
-                              collectionZone != null
-                            ) {
-                              widget.gameData.autonomousData = AutonomousData(
-                                isLeave: isLeave,
-                                l4Scored: l4Scored,
-                                l3Scored: l3Scored,
-                                l2Scored: l2Scored,
-                                l1Scored: l1Scored,
-                                netScored: netScored,
-                                removeAlgae: removeAlgae,
-                                collectionZone: collectionZone!
-                              );
-                            }
+                            widget.gameData.autonomousData = AutonomousData(
+                              isLeave: isLeave,
+                              l4Scored: l4Scored,
+                              l3Scored: l3Scored,
+                              l2Scored: l2Scored,
+                              l1Scored: l1Scored,
+                              netScored: netScored,
+                              removeAlgae: removeAlgae,
+                            );
     
                             Navigator.pushReplacement(
                               context, 
@@ -231,28 +203,23 @@ class _AutonomousFormState extends State<AutonomousForm> {
                         RoundedIconButton(
                           icon: Icons.arrow_forward, 
                           onPress: () {
-                            if (
-                              collectionZone != null
-                            ) {
-                              widget.gameData.autonomousData = AutonomousData(
-                                isLeave: isLeave,
-                                l4Scored: l4Scored,
-                                l3Scored: l3Scored,
-                                l2Scored: l2Scored,
-                                l1Scored: l1Scored,
-                                netScored: netScored,
-                                removeAlgae: removeAlgae,
-                                collectionZone: collectionZone!
-                              );
-    
-                              Navigator.pushReplacement(
-                                context, 
-                                MaterialPageRoute(
-                                  builder: (final BuildContext context) =>
-                                    TeleoparetedForm(gameData: widget.gameData)
-                                )
-                              );
-                            }
+                            widget.gameData.autonomousData = AutonomousData(
+                              isLeave: isLeave,
+                              l4Scored: l4Scored,
+                              l3Scored: l3Scored,
+                              l2Scored: l2Scored,
+                              l1Scored: l1Scored,
+                              netScored: netScored,
+                              removeAlgae: removeAlgae,
+                            );
+  
+                            Navigator.pushReplacement(
+                              context, 
+                              MaterialPageRoute(
+                                builder: (final BuildContext context) =>
+                                  TeleoparetedForm(gameData: widget.gameData)
+                              )
+                            );
                           }, 
                           onLongPress: () {}
                         )

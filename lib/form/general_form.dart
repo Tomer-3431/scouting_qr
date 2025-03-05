@@ -22,10 +22,6 @@ class GeneralForm extends StatefulWidget {
 
 class _GeneralFormState extends State<GeneralForm> {
 
-  bool isAlgaeFloorCollect = false;
-  bool isCoralFloorCollect = false;
-  bool isTouchedCage = false;
-
   bool didDefense = false;
 
   bool isStuck = false;
@@ -38,10 +34,6 @@ class _GeneralFormState extends State<GeneralForm> {
 
     if (widget.gameData.generalData != null) {
       GeneralData data = widget.gameData.generalData!;
-
-      isAlgaeFloorCollect = data.isAlgaeFloorCollect;
-      isCoralFloorCollect = data.isCoralFloorCollect;
-      isTouchedCage = data.isTouchedCage;
 
       didDefense = data.didDefense;
 
@@ -72,32 +64,6 @@ class _GeneralFormState extends State<GeneralForm> {
     
                     SizedBox(
                       height: 20,
-                    ),
-    
-                    Text(
-                      "Select If Algae In The Floor Was Collected: ", 
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    BooleanSwitch(
-                      onChange: (value) => isAlgaeFloorCollect = value,
-                    ),
-    
-                    SizedBox(
-                      height: 20,
-                    ),
-    
-                    Text(
-                      "Select If Coral In The Floor Was Collected: ",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    BooleanSwitch(
-                      onChange: (value) => isAlgaeFloorCollect = value,
-                    ),
-    
-                    SizedBox(
-                      height: 30,
                     ),
     
                     Text(
@@ -152,9 +118,6 @@ class _GeneralFormState extends State<GeneralForm> {
                           icon: Icons.arrow_back, 
                           onPress: () {
                             widget.gameData.generalData = GeneralData(
-                              isAlgaeFloorCollect: isAlgaeFloorCollect,
-                              isCoralFloorCollect: isCoralFloorCollect,
-                              isTouchedCage: isAlgaeFloorCollect,
                               didDefense: didDefense,
                               isStuck: isStuck,
                               comments: comments.text
@@ -179,9 +142,6 @@ class _GeneralFormState extends State<GeneralForm> {
                           icon: Icons.arrow_forward,
                           onPress: () {
                             widget.gameData.generalData = GeneralData(
-                              isAlgaeFloorCollect: isAlgaeFloorCollect,
-                              isCoralFloorCollect: isCoralFloorCollect,
-                              isTouchedCage: isAlgaeFloorCollect,
                               didDefense: didDefense,
                               isStuck: isStuck,
                               comments: comments.text

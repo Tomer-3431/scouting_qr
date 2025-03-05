@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:orbit_standard_library/orbit_standard_library.dart';
 import 'package:scouting_qr/data/game_data.dart';
 import 'package:scouting_qr/data/teleopareted_data.dart';
+import 'package:scouting_qr/enum/collection_zone.dart';
 import 'package:scouting_qr/widgets/demacia_app_bar.dart';
 import 'package:scouting_qr/form/autonomous_form.dart';
 import 'package:scouting_qr/form/end_game_form.dart';
@@ -29,6 +31,8 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
   int netScored = 0;
   int removeAlgae = 0;
 
+  CollectionZone? collectionZone;
+
   @override
   void initState() {
     super.initState();
@@ -44,6 +48,8 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
       processorScored = data.processorScored;
       netScored = data.netScored;
       removeAlgae = data.stolenAlgae;
+
+      collectionZone = data.collectionZone;
     }
   }
 
@@ -138,6 +144,24 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                       icon: Icons.wifi_tethering_off_outlined,
                       onChange:(final int p0) => setState(() => removeAlgae = p0),
                     ),
+
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                    Text(
+                      "Enter From Where The Robot Pickdup Corals :",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    Selector<CollectionZone>(
+                      options: CollectionZone.values,
+                      placeholder: "Select Where The Robot Collected Corals",
+                      makeItem: (CollectionZone collectionZone) => collectionZone.title,
+                      validate: always2(null),
+                      value: collectionZone,
+                      onChange: (p0) => collectionZone = p0,
+                    ),
     
                     SizedBox(
                       height: 20,
@@ -148,23 +172,26 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                         RoundedIconButton(
                           icon: Icons.arrow_back, 
                           onPress: () {
-                            widget.gameData.teleoparetedData = TeleoparetedData(
-                              l4Scored: l4Scored,
-                              l3Scored: l3Scored,
-                              l2Scored: l2Scored,
-                              l1Scored: l1Scored,
-                              processorScored: processorScored,
-                              netScored: netScored,
-                              stolenAlgae: removeAlgae,
-                            );
-    
-                            Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (final BuildContext context) => 
-                                  AutonomousForm(gameData: widget.gameData)
-                              )  
-                            );
+                            if (collectionZone != null) {
+                              widget.gameData.teleoparetedData = TeleoparetedData(
+                                l4Scored: l4Scored,
+                                l3Scored: l3Scored,
+                                l2Scored: l2Scored,
+                                l1Scored: l1Scored,
+                                processorScored: processorScored,
+                                netScored: netScored,
+                                stolenAlgae: removeAlgae,
+                                collectionZone: collectionZone!
+                              );
+      
+                              Navigator.pushReplacement(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (final BuildContext context) => 
+                                    AutonomousForm(gameData: widget.gameData)
+                                )  
+                              );
+                            }
                           }, 
                           onLongPress: () {}
                         ),
@@ -176,25 +203,28 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                         RoundedIconButton(
                           icon: Icons.arrow_forward, 
                           onPress: () {
-                            widget.gameData.teleoparetedData = TeleoparetedData(
-                              l4Scored: l4Scored,
-                              l3Scored: l3Scored,
-                              l2Scored: l2Scored,
-                              l1Scored: l1Scored,
-                              processorScored: processorScored,
-                              netScored: netScored,
-                              stolenAlgae: removeAlgae,
-                            );
-    
-                            Navigator.pushReplacement(
-                              context, 
-                              MaterialPageRoute(
-                                builder: (final BuildContext context) =>
-                                EndGameForm(
-                                  gameData: widget.gameData
+                            if (collectionZone != null) {
+                              widget.gameData.teleoparetedData = TeleoparetedData(
+                                l4Scored: l4Scored,
+                                l3Scored: l3Scored,
+                                l2Scored: l2Scored,
+                                l1Scored: l1Scored,
+                                processorScored: processorScored,
+                                netScored: netScored,
+                                stolenAlgae: removeAlgae,
+                                collectionZone: collectionZone!
+                              );
+      
+                              Navigator.pushReplacement(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (final BuildContext context) =>
+                                  EndGameForm(
+                                    gameData: widget.gameData
+                                  )
                                 )
-                              )
-                            );
+                              );
+                            }
                           }, 
                           onLongPress: () {}
                         )
