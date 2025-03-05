@@ -1,5 +1,3 @@
-import 'package:scouting_qr/enum/algae_in_reef.dart';
-
 class GeneralData {
   GeneralData({
     required this.isAlgaeFloorCollect,
