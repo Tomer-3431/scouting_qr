@@ -24,7 +24,7 @@ class _NotPlayedQrCodeState extends State<NotPlayedQrCode> {
     super.initState();
 
     widget.gameData.technicalData = TechnicalData(
-        version: Version(major: 1, minor: 2, patch: 0),
+        version: Version(major: 2, minor: 0, patch: 0),
         time: DateTime.now(),
         id: "${widget.gameData.detailsData!.matchNumber}|${widget.gameData.detailsData!.teamStation.getIndexLetter()}|${widget.gameData.detailsData!.matchTeam.teamNum}");
   }
