@@ -92,7 +92,7 @@ while True:
 
     try:
         for barcode in decode(frame):
-            myData: str = barcode.data.decode("utf-16")
+            myData: str = barcode.data.decode("utf-8")
             splitData: list[str] = myData.split(",")
             print(myData)
 
