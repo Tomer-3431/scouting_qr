@@ -24,10 +24,10 @@ class GameData {
 
   @override
   String toString() {
-    return ",,$detailsData,,$autonomousData,,$teleoparetedData,,$endGameData,,$generalData,$technicalData";
+    return ",,$detailsData,,$autonomousData,,$teleoparetedData,,$endGameData,,$generalData,,$technicalData";
   }
 
   String notPlayedString() {
-    return ",,$detailsData,,${AutonomousData.notPlayedString()},,${TeleoparetedData.notPlayedString()},,${EndGameData.notPlayedString()},,${GeneralData.notPlayedString()},$technicalData";
+    return ",,$detailsData,,${AutonomousData.notPlayedString()},,${TeleoparetedData.notPlayedString()},,${EndGameData.notPlayedString()},,${GeneralData.notPlayedString()},,$technicalData";
   }
 }
