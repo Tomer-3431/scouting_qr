@@ -180,6 +180,7 @@ class _DetailsFormState extends State<DetailsForm> {
                               width: 20,
                             ),
                             BooleanSwitch(
+                              value: isPlayed,
                               onChange: (value) =>
                                   setState(() => isPlayed = value),
                             ),

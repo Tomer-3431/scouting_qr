@@ -90,6 +90,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                                   style: TextStyle(fontSize: 18),
                                 ),
                                 BooleanSwitch(
+                                  value: isLeave,
                                   onChange: (value) =>
                                       setState(() => isLeave = value),
                                 ),

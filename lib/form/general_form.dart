@@ -70,6 +70,7 @@ class _GeneralFormState extends State<GeneralForm> {
                           style: TextStyle(fontSize: 18),
                         ),
                         BooleanSwitch(
+                          value: didDefense,
                           onChange: (value) => didDefense = value,
                         ),
                         SizedBox(
@@ -81,6 +82,7 @@ class _GeneralFormState extends State<GeneralForm> {
                           style: TextStyle(fontSize: 18),
                         ),
                         BooleanSwitch(
+                          value: isStuck,
                           onChange: (value) => isStuck = value,
                         ),
                         SizedBox(

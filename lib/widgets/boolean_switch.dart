@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class BooleanSwitch extends StatefulWidget {
   const BooleanSwitch({
     super.key,
+    required this.value,
     this.onChange,
   });
+  final bool value;
   final void Function(bool value)? onChange;
 
   @override
@@ -13,6 +15,13 @@ class BooleanSwitch extends StatefulWidget {
 
 class _Switch extends State<BooleanSwitch> {
   bool light = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    light = widget.value; 
+  }
 
   static const WidgetStateProperty<Icon> thumbIcon =
       WidgetStateProperty<Icon>.fromMap(
