@@ -8,7 +8,7 @@ class TeleoparetedData {
       required this.l1Scored,
       required this.processorScored,
       required this.netScored,
-      required this.stolenAlgae,
+      required this.algaeRemove,
       required this.collectionZone});
 
   int l4Scored;
@@ -18,13 +18,13 @@ class TeleoparetedData {
 
   int processorScored;
   int netScored;
-  int stolenAlgae;
+  int algaeRemove;
 
   CollectionZone collectionZone;
 
   @override
   String toString() {
-    return "$l4Scored,$l3Scored,$l2Scored,$l1Scored,$processorScored,$netScored,$stolenAlgae,${collectionZone.sheetsName}";
+    return "$l4Scored,$l3Scored,$l2Scored,$l1Scored,$processorScored,$netScored,$algaeRemove,${collectionZone.sheetsName}";
   }
 
   static notPlayedString() {

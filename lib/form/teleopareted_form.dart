@@ -28,7 +28,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
 
   int processorScored = 0;
   int netScored = 0;
-  int removeAlgae = 0;
+  int algaeRemove = 0;
 
   CollectionZone? collectionZone;
 
@@ -46,7 +46,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
 
       processorScored = data.processorScored;
       netScored = data.netScored;
-      removeAlgae = data.stolenAlgae;
+      algaeRemove = data.algaeRemove;
 
       collectionZone = data.collectionZone;
     } else {
@@ -57,7 +57,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
 
       processorScored = 0;
       netScored = 0;
-      removeAlgae = 0;
+      algaeRemove = 0;
 
       collectionZone = null;
     }
@@ -142,11 +142,11 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                               setState(() => netScored = p0),
                         ),
                         ScoreCounter(
-                          count: removeAlgae,
+                          count: algaeRemove,
                           label: "Remove Algae",
                           icon: Icons.wifi_tethering_off_outlined,
                           onChange: (final int p0) =>
-                              setState(() => removeAlgae = p0),
+                              setState(() => algaeRemove = p0),
                         ),
                         SizedBox(
                           height: 20,
@@ -183,7 +183,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                                             l1Scored: l1Scored,
                                             processorScored: processorScored,
                                             netScored: netScored,
-                                            stolenAlgae: removeAlgae,
+                                            algaeRemove: algaeRemove,
                                             collectionZone: collectionZone!);
 
                                     Navigator.pushReplacement(
@@ -212,7 +212,7 @@ class _TeleoparetedFormState extends State<TeleoparetedForm> {
                                             l1Scored: l1Scored,
                                             processorScored: processorScored,
                                             netScored: netScored,
-                                            stolenAlgae: removeAlgae,
+                                            algaeRemove: algaeRemove,
                                             collectionZone: collectionZone!);
 
                                     Navigator.pushReplacement(
