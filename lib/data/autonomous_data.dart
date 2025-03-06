@@ -25,6 +25,6 @@ class AutonomousData {
   }
 
   static String notPlayedString() {
-    return ",,0,0,0,0,0,0";
+    return ",0,0,0,0,0,0";
   }
 }
