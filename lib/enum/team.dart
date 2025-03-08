@@ -65,7 +65,7 @@ enum Team implements EnumOptions {
   TSUNAMI("10139 Tsunami", "10139 - Tsunami", 10139),
   GALILEO("10695 Galileo", "10695 - Galileo", 10695),
   TEST_TEAM1("9997 Test Team 1", "9997 Test Team", 9997),
-  TEST_TEAM2("9998 Test Team 2", "9997 Test Team", 9998),
+  TEST_TEAM2("9998 Test Team 2", "9998 Test Team", 9998),
   TEST_TEAM3("9999 Test Team 3", "9999 Test Team", 9999);
 
   @override
