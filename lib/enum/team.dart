@@ -2,7 +2,7 @@ import 'package:scouting_qr/enum/enum_options.dart';
 
 enum Team implements EnumOptions {
   MISCAR("1574 MisCar", "1574 - MisCar", 1574),
-  VOLTRIX("1576 Voltrix", "1574 - Voltrix", 1576),
+  VOLTRIX("1576 Voltrix", "1576 - Voltrix", 1576),
   STEAMPUNK("1577 Steampunk", "1577 - Steampunk", 1577),
   THE_BLUE_MONKEYS("1580 The Blue Monkeys", "1580 - The Blue Monkeys", 1580),
   HAMOSAD("1657 Hamosad", "1657 - Hamosad", 1657),
