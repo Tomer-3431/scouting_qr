@@ -13,8 +13,8 @@ import requests
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
-SAMPLE_SPREADSHEET_ID = "1AY_-V0ARO47pqvl9GkZwr9pHLo9MLFsO1Ipqyizyqik"
-SAMPLE_RANGE_NAME = "Sheets1!A:C"
+SAMPLE_SPREADSHEET_ID = "13htMN6lqqRJMlpDD5ZsF5VIfxXsaej6Tpx3-a08VP2A"
+SAMPLE_RANGE_NAME = "TomerData!A:C"
 
 creds = None
 
