@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 import requests
-
+''
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 SAMPLE_SPREADSHEET_ID = "1AY_-V0ARO47pqvl9GkZwr9pHLo9MLFsO1Ipqyizyqik"
@@ -35,7 +35,7 @@ if not creds or not creds.valid:
 
 service = build("sheets", "v4", credentials=creds)
 
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture(1)
 cap.set(cv.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv.CAP_PROP_FRAME_HEIGHT, 720)
 
@@ -67,13 +67,23 @@ def sendToGoogleSheet(data: list[list[str]]) -> str:
 
 
 def writeToFile(barcode: str) -> None:
-    f = open("qrReader/scoutingInfo.txt", "a")
-    f.write(barcode + "\n")
-    f.close()
+    with open("qrReader/scoutingInfo.txt", 'a') as f:
+        f.write(barcode + "\n")
 
+def process(frame):
+    frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)    
+    y = int(1280 * 0.1)
+    x = int(720 * 0.1)
+    w = 720 - x
+    h = 1280 - y
+    frame = frame[y:y+h, x:x+w]
+    blur = cv.GaussianBlur(frame,(3,3),0)
+    ret3,th3 = cv.threshold(blur,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+    return th3
 
 while True:
     ret, frame = cap.read()
+    frame = process(frame)
 
     if len(unsendBarcodes) > 0:
         try:
