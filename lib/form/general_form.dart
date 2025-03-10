@@ -21,8 +21,8 @@ class GeneralForm extends StatefulWidget {
 }
 
 class _GeneralFormState extends State<GeneralForm> {
-  bool didDefense = true;
-  bool isStuck = true;
+  bool didDefense = false;
+  bool isStuck = false;
 
   TextEditingController comments = TextEditingController();
 
@@ -38,8 +38,8 @@ class _GeneralFormState extends State<GeneralForm> {
 
       comments.text = data.comments;
     } else {
-      didDefense = true;
-      isStuck = true;
+      didDefense = false;
+      isStuck = false;
 
       comments.text = "";
     }
