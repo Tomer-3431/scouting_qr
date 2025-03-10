@@ -173,7 +173,7 @@ class _DetailsFormState extends State<DetailsForm> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Uncheck This Switch \nIf The Team Is Not Playing:",
+                              "Is Team Playing",
                               style: TextStyle(fontSize: 18),
                             ),
                             SizedBox(

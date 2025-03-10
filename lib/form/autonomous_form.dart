@@ -85,7 +85,7 @@ class _AutonomousFormState extends State<AutonomousForm> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Check The Switch If The Team Leaved In Auto",
+                                  "Is Team Leaved The Starting Line",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(fontSize: 18),
                                 ),
