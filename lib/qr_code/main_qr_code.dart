@@ -25,7 +25,7 @@ class _MainQrCodeState extends State<MainQrCode> {
     super.initState();
 
     widget.gameData.technicalData = TechnicalData(
-        version: Version(major: 2, minor: 0, patch: 0),
+        version: Version(major: 2, minor: 1, patch: 0),
         time: DateTime.now(),
         id: "${widget.gameData.detailsData!.matchNumber}|${widget.gameData.detailsData!.teamStation.getIndexLetter()}|${widget.gameData.detailsData!.matchTeam.teamNum}");
   }
