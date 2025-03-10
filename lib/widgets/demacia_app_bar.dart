@@ -19,5 +19,14 @@ class DemaciaAppBar extends AppBar {
   );
 
   @override
+  final Widget leading = Text(
+    "2.0.0",
+    textAlign: TextAlign.end,
+    style: TextStyle(
+      color: Colors.white
+    )
+  );
+
+  @override
   final Color backgroundColor = Colors.deepPurple.shade700;
 }
