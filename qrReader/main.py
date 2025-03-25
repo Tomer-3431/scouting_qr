@@ -13,7 +13,9 @@ import requests
 ''
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
-SAMPLE_SPREADSHEET_ID = "13htMN6lqqRJMlpDD5ZsF5VIfxXsaej6Tpx3-a08VP2A"
+DEMACIA_SPREADSHEET_ID = "1hyFnvzltVvY20OpxuQe5-nzW-l-8aGyxYo-S9qrIfVk"
+PHEONIX_SPREADSHEET_ID = "1PdokcWuBU_6Vf5UT-Ldwnld9Y_3Hs2qWxCnOTBcAXKU"
+CYPHER_SPREADSHEET_ID = "1vasKJvJ1lqDt4DbjbkLWtZvKrdMK6mGUg8JePbcdkHA"
 SAMPLE_RANGE_NAME = "TomerData!A:C"
 
 creds = None
@@ -48,6 +50,8 @@ def checkConnection():
 
 
 def sendToGoogleSheet(data: list[list[str]]) -> str:
+    savedOnRange: str = ""
+    
     requestBody = {
         "majorDimension": "ROWS",
         "values": data,
@@ -56,14 +60,53 @@ def sendToGoogleSheet(data: list[list[str]]) -> str:
         service.spreadsheets()
         .values()
         .append(
-            spreadsheetId=SAMPLE_SPREADSHEET_ID,
+            spreadsheetId=DEMACIA_SPREADSHEET_ID,
             range=SAMPLE_RANGE_NAME,
             valueInputOption="USER_ENTERED",
             body=requestBody,
         )
         .execute()
     )
-    return result
+    
+    savedOnRange += "Saved on: " + result["updates"]["updatedRange"] + "at Demacia\n"
+    
+    requestBody = {
+        "majorDimension": "ROWS",
+        "values": data,
+    }
+    result = (
+        service.spreadsheets()
+        .values()
+        .append(
+            spreadsheetId=PHEONIX_SPREADSHEET_ID,
+            range=SAMPLE_RANGE_NAME,
+            valueInputOption="USER_ENTERED",
+            body=requestBody,
+        )
+        .execute()
+    )
+    
+    savedOnRange += "Saved on: " + result["updates"]["updatedRange"] + "at Pheonix\n"
+
+    requestBody = {
+        "majorDimension": "ROWS",
+        "values": data,
+    }
+    result = (
+        service.spreadsheets()
+        .values()
+        .append(
+            spreadsheetId=CYPHER_SPREADSHEET_ID,
+            range=SAMPLE_RANGE_NAME,
+            valueInputOption="USER_ENTERED",
+            body=requestBody,
+        )
+        .execute()
+    )
+    
+    savedOnRange += "Saved on: " + result["updates"]["updatedRange"] + "At Cypher\n"
+    
+    return savedOnRange
 
 
 def writeToFile(barcode: str) -> None:
@@ -90,7 +133,7 @@ while True:
             checkConnection()
             result = sendToGoogleSheet(unsendBarcodes)
             print(
-                "send unsended tags and saved on: " + result["updates"]["updatedRange"]
+                "Sended unsended tags and\n" + result
             )
             unsendBarcodes = []
 
@@ -111,7 +154,7 @@ while True:
                     writeToFile(myData)
                     checkConnection()
                     result = sendToGoogleSheet([splitData[2:]])
-                    print("saved on: " + result["updates"]["updatedRange"])
+                    print("Saved on: " + result)
                     seenBarcodes.append(splitData[-1])
 
             except requests.ConnectionError as e:
@@ -127,7 +170,7 @@ while True:
             pts2 = barcode.rect
             cv.putText(
                 frame,
-                myData,
+                splitData[-1],
                 (pts2[0], pts2[1]),
                 cv.FONT_HERSHEY_COMPLEX,
                 1,
